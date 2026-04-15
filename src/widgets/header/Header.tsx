@@ -1,10 +1,12 @@
-import { NavLink, Link } from 'react-router'
-import { navItems } from './header.data'
 
 export default function Header() {
   return (
-    <header className=''>
-
+    <header className='flex flex-row items-center justify-between shadow-2xs'>
+      <div>
+        <div>
+          <img src="" alt="" />
+        </div>
+      </div>
     </header>
   )
 }

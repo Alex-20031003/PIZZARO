@@ -4,14 +4,14 @@ import { Outlet } from 'react-router'
 
 export function MainLayout() {
   return(
-    <>
+    <div className='flex min-h-screen flex-col'>
       <Header />
 
-      <main>
+      <main className='flex-1'>
         <Outlet />
       </main>
 
       <Footer />
-    </>
+    </div>
   )
 }

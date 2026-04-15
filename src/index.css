@@ -8,6 +8,7 @@
   --primary: #f05a24;
   --light-grey: #f5f5f5;
   --dark-grey: #6b6b6b;
+  --shadow-header: 0px 0px 15px rgba(0, 0, 0, .7);
 }
 
 *,

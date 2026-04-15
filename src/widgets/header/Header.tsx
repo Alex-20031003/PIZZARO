@@ -6,7 +6,7 @@ import NavItems from './NavItems'
 
 export default function Header() {
   return (
-    <header className='flex flex-row items-center justify-between shadow-2xs py-4'>
+    <header className='flex flex-row items-center justify-between shadow-(--shadow-header) py-4'>
       <Container>
         <div className='flex flex-row max-w-2xl w-full justify-between'>
           <div className='flex flex-row items-center justify-between max-w-43 w-full'>

@@ -10,3 +10,4 @@ export const navItems: NavItem[] = [
   { to: '/about', label: 'About Us' },
   { to: 'contacts', label: 'Contacts' }
 ]
+

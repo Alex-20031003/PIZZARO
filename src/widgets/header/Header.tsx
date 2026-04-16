@@ -1,7 +1,6 @@
 import Image from '@/shared/ui/Image'
 import logo from '@/assets/logo.svg'
 import Container from '@/shared/ui/Container'
-import { Link } from 'react-router'
 import NavItems from './NavItems'
 import { Heart, ShoppingBag, User } from 'lucide-react'
 
@@ -28,9 +27,9 @@ export default function Header({ onOpenCart, onOpenFavorite, onOpenUser }: Heade
           </div>
 
           <div className='flex flex-row items-center justify-between max-w-30 w-full'>
-            <Heart onClick={onOpenFavorite} />
-            <ShoppingBag onClick={onOpenCart} />
-            <User onClick={onOpenUser} />
+            <Heart onClick={onOpenFavorite} className='cursor-pointer' />
+            <ShoppingBag onClick={onOpenCart} className='cursor-pointer' />
+            <User onClick={onOpenUser} className='cursor-pointer' />
           </div>
         </div>
       </Container>

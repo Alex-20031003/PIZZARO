@@ -1,1 +1,1 @@
-export type SidebarType = 'cart' | 'favorite' | 'user' | null
+export type SidebarType = 'cart' | 'favorite' | 'user' | 'navigation' | null

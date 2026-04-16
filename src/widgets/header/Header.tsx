@@ -8,9 +8,10 @@ type HeaderProps = {
   onOpenCart: () => void
   onOpenFavorite: () => void
   onOpenUser: () => void
+  onOpenNavigation: () => void
 }
 
-export default function Header({ onOpenCart, onOpenFavorite, onOpenUser }: HeaderProps) {
+export default function Header({ onOpenCart, onOpenFavorite, onOpenUser, onOpenNavigation }: HeaderProps) {
   return (
     <header className='flex flex-row items-center justify-between shadow-(--shadow-header) py-4'>
       <Container>
@@ -30,7 +31,7 @@ export default function Header({ onOpenCart, onOpenFavorite, onOpenUser }: Heade
             <Heart onClick={onOpenFavorite} size={24} className='cursor-pointer hidden sm:block' />
             <ShoppingBag onClick={onOpenCart} size={24} className='cursor-pointer hidden sm:block' />
             <User onClick={onOpenUser} size={24} className='cursor-pointer hidden sm:block' />
-            <Menu size={24} className='sm:hidden' />
+            <Menu size={24} onClick={onOpenNavigation} className='sm:hidden' />
           </div>
         </div>
       </Container>

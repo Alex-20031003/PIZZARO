@@ -1,4 +1,5 @@
 import type { SidebarType } from './sidebar.types'
+import { X } from 'lucide-react'
 
 type SidebarProps = {
   activeSidebar: SidebarType
@@ -17,16 +18,17 @@ export default function Sidebar({ activeSidebar, onClose }: SidebarProps) {
       />
 
       <aside
-        className={`fixed top-0 right-0 z-50 h-full w-full max-w-105 bg-white shadow-xl transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 right-0 z-50 h-full w-full max-w-full sm:max-w-105 py-6 px-10 bg-white shadow-xl transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         <button type="button" onClick={onClose}>
-          Close
+          <X />
         </button>
 
         {activeSidebar === 'cart' && <div>Cart content</div>}
         {activeSidebar === 'favorite' && <div>Favorite content</div>}
         {activeSidebar === 'user' && <div>User content</div>}
+        {activeSidebar === 'navigation' && <div>Navigation</div>}
       </aside>
     </>
   )

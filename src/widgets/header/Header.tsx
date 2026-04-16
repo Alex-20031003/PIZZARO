@@ -3,7 +3,7 @@ import logo from '@/assets/logo.svg'
 import Container from '@/shared/ui/Container'
 import { Link } from 'react-router'
 import NavItems from './NavItems'
-import { Heart } from 'lucide-react'
+import { Heart, ShoppingBag, User } from 'lucide-react'
 
 type HeaderProps = {
   onOpenCart: () => void
@@ -25,6 +25,12 @@ export default function Header({ onOpenCart, onOpenFavorite, onOpenUser }: Heade
             <nav className='flex flex-row max-w-90 w-full items-center justify-between'>
               <NavItems />
             </nav>
+          </div>
+
+          <div className='flex flex-row items-center justify-between max-w-30 w-full'>
+            <Heart onClick={onOpenFavorite} />
+            <ShoppingBag onClick={onOpenCart} />
+            <User onClick={onOpenUser} />
           </div>
         </div>
       </Container>

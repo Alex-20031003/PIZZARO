@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export interface NavItem {
   to: string
   label: string
@@ -10,4 +12,3 @@ export const navItems: NavItem[] = [
   { to: '/about', label: 'About Us' },
   { to: 'contacts', label: 'Contacts' }
 ]
-

@@ -15,7 +15,7 @@ export default function NavItems() {
 
                     <span className={`absolute left-0 top-0 ${isActive ? 'font-semibold' : 'font-normal'}`}>{label}</span>
 
-                    <span className={`absolute -bottom-6.5 sm:-bottom-6.5 md:-bottom-7 lg:-bottom-6.5 left-0 h-0.75 bg-(--primary) transition-width duration-500 ${isActive ? 'w-full' : 'w-0'}`}></span>
+                    <span className={`absolute -bottom-6.5 sm:-bottom-6.5 md:-bottom-6 lg:-bottom-5.5 left-0 h-0.75 bg-(--primary) transition-width duration-500 ${isActive ? 'w-full' : 'w-0'}`}></span>
                   </span>
                 )}
               </NavLink>

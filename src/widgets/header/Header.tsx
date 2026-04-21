@@ -3,7 +3,6 @@ import NavItems from './NavItems'
 import Logo from './Logo'
 import IconItems from './IconItems'
 
-
 type HeaderProps = {
   onOpenCart: () => void
   onOpenFavorite: () => void

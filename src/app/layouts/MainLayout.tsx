@@ -24,7 +24,7 @@ export function MainLayout() {
 
       <Footer />
 
-      <SidebarPortal activeSidebar={activeSidebar} onClose={closeSidebar} />
+      <SidebarPortal activeSidebar={activeSidebar} onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} onClose={closeSidebar} />
     </div>
   )
 }

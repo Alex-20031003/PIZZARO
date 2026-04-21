@@ -1,12 +1,16 @@
 import type { SidebarType } from './sidebar.types'
 import { X } from 'lucide-react'
+import MobileNav from '../header/MobileNav'
 
 type SidebarProps = {
   activeSidebar: SidebarType
+  onOpenCart: () => void
+  onOpenFavorite: () => void
+  onOpenUser: () => void
   onClose: () => void
 }
 
-export default function Sidebar({ activeSidebar, onClose }: SidebarProps) {
+export default function Sidebar({ activeSidebar, onClose, onOpenCart, onOpenFavorite, onOpenUser }: SidebarProps) {
   const isOpen = activeSidebar !== null
 
   return (
@@ -22,13 +26,13 @@ export default function Sidebar({ activeSidebar, onClose }: SidebarProps) {
           }`}
       >
         <button type="button" onClick={onClose}>
-          <X />
+          <X size={36} />
         </button>
 
         {activeSidebar === 'cart' && <div>Cart content</div>}
         {activeSidebar === 'favorite' && <div>Favorite content</div>}
         {activeSidebar === 'user' && <div>User content</div>}
-        {activeSidebar === 'navigation' && <div>Navigation</div>}
+        {activeSidebar === 'navigation' && <MobileNav onOpenCart={onOpenCart} onOpenFavorite={onOpenFavorite} onOpenUser={onOpenUser} onClose={onClose} />}
       </aside>
     </>
   )

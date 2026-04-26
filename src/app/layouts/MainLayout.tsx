@@ -10,12 +10,13 @@ export function MainLayout() {
     openCart,
     openFavorite,
     openUser,
+    openNavigation,
     closeSidebar,
   } = useSidebar()
 
   return(
     <div className='flex min-h-screen flex-col'>
-      <Header onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} />
+      <Header onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} onOpenNavigation={openNavigation} />
 
       <main className='flex-1'>
         <Outlet />
@@ -23,7 +24,7 @@ export function MainLayout() {
 
       <Footer />
 
-      <SidebarPortal activeSidebar={activeSidebar} onClose={closeSidebar} />
+      <SidebarPortal activeSidebar={activeSidebar} onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} onClose={closeSidebar} />
     </div>
   )
 }

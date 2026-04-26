@@ -7,6 +7,7 @@ export function useSidebar() {
   const openCart = () => setActiveSidebar('cart')
   const openFavorite = () => setActiveSidebar('favorite')
   const openUser = () => setActiveSidebar('user')
+  const openNavigation = () => setActiveSidebar('navigation')
   const closeSidebar = () => setActiveSidebar(null)
 
   return {
@@ -14,6 +15,7 @@ export function useSidebar() {
     openCart,
     openFavorite,
     openUser,
+    openNavigation,
     closeSidebar
   }
 }

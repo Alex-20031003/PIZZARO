@@ -3,10 +3,10 @@ import facebook from '@/assets/Facebook_Logo.svg'
 import tiktok from '@/assets/TikTok_Logo.svg'
 
 export const MENU_ITEMS = [
-  { to: '/menu/pizza' , label: 'Pizza' },
-  { to: '/menu/sushi' , label: 'Sushi' },
+  { to: '/menu/pizza', label: 'Pizza' },
+  { to: '/menu/sushi', label: 'Sushi' },
   { to: '/menu/burgers', label: 'Burgers' },
-  { to: '/menu/drinks' , label: 'Drinks' },
+  { to: '/menu/drinks', label: 'Drinks' }
 ]
 
 export const INFO_ITEMS = [
@@ -17,10 +17,11 @@ export const INFO_ITEMS = [
 
 export const CONTACT_ITEMS = [
   { to: 'tel:+9 (99) 999-99-99', label: '+9 (99) 999-99-99' },
-  { to: 'mailto:pizzarosupport@gmail.com', label: 'pizzarosupport@gmail.com' },
-  [ 
-    { to: 'https://instagram.com', label: inst, external: true },
-    { to: 'https://facebook.com/', label: facebook, external: true },
-    { to: 'https://twitter.com/', label: tiktok, external: true }
-  ]
+  { to: 'mailto:pizzarosupport@gmail.com', label: 'pizzarosupport@gmail.com' }
+]
+
+export const SOCIAL_ITEMS = [
+  { to: 'https://instagram.com', icon: inst, label: 'Instagram' },
+  { to: 'https://facebook.com/', icon: facebook, label: 'Facebook' },
+  { to: 'https://twitter.com/', icon: tiktok, label: 'Twitter' }
 ]

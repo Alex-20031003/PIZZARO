@@ -10,8 +10,8 @@ export default function Footer() {
         <div className='grid grid-cols-1 lg:grid-cols-4 lg:gap-12 gap-8'>
           <div className='flex flex-col justify-between'>
             <Link to='/' className='flex flex-row gap-4 items-center'>
-              <img src={logo} alt='Logo Pizzaro' className='sm:w-14 sm:h-14 w-12 h-12' />
-              <h1 className='font-semibold text-xl sm:text-3xl'>PIZZARO</h1>
+              <img src={logo} alt='Logo Pizzaro' className='w-14 h-14' />
+              <h1 className='font-semibold text-3xl'>PIZZARO</h1>
             </Link>
             <p className='text-sm text-white/80'>© 2026 Copyright All Rights Reserved</p>
           </div>

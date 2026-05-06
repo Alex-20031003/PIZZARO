@@ -1,6 +1,6 @@
-import inst from '@/assets/Inst_Logo.svg'
-import facebook from '@/assets/Facebook_Logo.svg'
-import tiktok from '@/assets/TikTok_Logo.svg'
+import inst from '@/assets/inst-logo.svg?react'
+import facebook from '@/assets/facebook-logo.svg?react'
+import tiktok from '@/assets/tiktok-logo.svg?react'
 
 export const MENU_ITEMS = [
   { to: '/menu/pizza', label: 'Pizza' },
@@ -21,7 +21,7 @@ export const CONTACT_ITEMS = [
 ]
 
 export const SOCIAL_ITEMS = [
-  { to: 'https://instagram.com', icon: inst, label: 'Instagram' },
+  { to: 'https://instagram.com/', icon: inst, label: 'Instagram' },
   { to: 'https://facebook.com/', icon: facebook, label: 'Facebook' },
   { to: 'https://twitter.com/', icon: tiktok, label: 'Twitter' }
 ]

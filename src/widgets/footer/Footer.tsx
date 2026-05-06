@@ -13,7 +13,7 @@ export default function Footer() {
               <img src={logo} alt='Logo Pizzaro' className='w-14 h-14' />
               <h1 className='font-semibold text-3xl'>PIZZARO</h1>
             </Link>
-            <p className='text-sm text-white/80'>© 2026 Copyright All Rights Reserved</p>
+            <p className='text-sm text-white/80 hidden lg:block'>© 2026 Copyright All Rights Reserved</p>
           </div>
 
           <div className='flex flex-col items-start'>
@@ -58,6 +58,8 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          <p className='text-sm text-white/80 block lg:hidden'>© 2026 Copyright All Rights Reserved</p>
         </div>
       </Container>
     </footer>

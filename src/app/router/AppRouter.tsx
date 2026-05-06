@@ -16,9 +16,10 @@ export default function AppRouter() {
         <Route path='/about' element={<AboutPage />} />
         <Route path='/contacts' element={<ContactsPage />} />
         <Route path='/checkout' element={<CheckoutPage />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Route>
 
-      <Route path='*' element={<NotFoundPage />} />
+      
     </Routes>
   )
 }

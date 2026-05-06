@@ -23,5 +23,5 @@ export const CONTACT_ITEMS = [
 export const SOCIAL_ITEMS = [
   { to: 'https://instagram.com/', icon: inst, label: 'Instagram' },
   { to: 'https://facebook.com/', icon: facebook, label: 'Facebook' },
-  { to: 'https://twitter.com/', icon: tiktok, label: 'Twitter' }
+  { to: 'https://tiktok.com/', icon: tiktok, label: 'Twitter' }
 ]

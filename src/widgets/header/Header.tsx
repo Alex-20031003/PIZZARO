@@ -12,7 +12,7 @@ type HeaderProps = {
 
 export default function Header({ onOpenCart, onOpenFavorite, onOpenUser, onOpenNavigation }: HeaderProps) {
   return (
-    <header className='flex flex-row items-center justify-between shadow-(--shadow-header) py-4'>
+    <header className='flex flex-row items-center justify-between shadow-(--shadow-header) py-4 z-10 realative'>
       <Container>
         <div className='flex flex-row w-full justify-between'>
           <div className='flex flex-row gap-35 sm:gap-20 md:gap-20 xl:gap-30'>

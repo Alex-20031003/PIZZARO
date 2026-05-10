@@ -33,11 +33,11 @@ export default function Categories() {
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center justify-between gap-6'>
           {categories.map(category => (
             <CardBox key={category.id}>
-              <div className='relative flex flex-col items-center justify-center pb-3'>
+              <Link to={`/menu/${category.slug}`} className='relative flex flex-col items-center justify-center pb-3'>
                 <img src={category.image_url} alt={category.title} className='rounded-xl' />
                 <h3 className='text-2xl font-bold'>{category.title}</h3>
                 <ChevronRight className='absolute right-3 bottom-3 size-8 text-[#F05A24]' strokeWidth={2.5} />
-              </div>
+              </Link>
             </CardBox>
           ))}
         </ul>

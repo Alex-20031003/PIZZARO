@@ -1,11 +1,5 @@
 import { supabase } from '@/shared/api/supabase/client'
-
-export interface Category {
-  id: number
-  title: string
-  slug: string
-  image_url: string | null
-}
+import type { Category } from '../model/types.data'
 
 export async function getCategories(): Promise<Category[]> {
   const { data, error } = await supabase

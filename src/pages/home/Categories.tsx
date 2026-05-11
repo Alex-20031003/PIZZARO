@@ -42,7 +42,6 @@ export default function Categories() {
           ))}
         </ul>
       </Container>
-
     </section>
   )
 }

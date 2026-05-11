@@ -27,10 +27,10 @@ export default function Categories() {
   }
 
   return (
-    <section className='flex flex-col items-center mt-9 mb-9'>
-      <Container>
-        <h2 className='text-4xl font-semibold mb-9 text-center'>Explorer Our Menu</h2>
-        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center justify-between gap-6'>
+    <section className='mt-9 mb-9'>
+      <Container className='flex flex-col'>
+        <h2 className='text-4xl font-semibold mb-9 text-center self-center'>Explorer Our Menu</h2>
+        <ul className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6'>
           {categories.map(category => (
             <CardBox key={category.id}>
               <Link to={`/menu/${category.slug}`} className='relative flex flex-col items-center justify-center pb-3'>

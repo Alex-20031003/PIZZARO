@@ -16,7 +16,7 @@ export default function Sidebar({ activeSidebar, onClose, onOpenCart, onOpenFavo
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/40 transition-opacity duration-300 ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'
           }`}
         onClick={onClose}
       />

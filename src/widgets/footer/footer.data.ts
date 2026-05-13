@@ -1,6 +1,6 @@
-import inst from '@/assets/inst-logo.svg?react'
-import facebook from '@/assets/facebook-logo.svg?react'
-import tiktok from '@/assets/tiktok-logo.svg?react'
+import inst from '@/assets/social-icons/inst-logo.svg?react'
+import facebook from '@/assets/social-icons/facebook-logo.svg?react'
+import tiktok from '@/assets/social-icons/tiktok-logo.svg?react'
 
 export const MENU_ITEMS = [
   { to: '/menu/pizza', label: 'Pizza' },

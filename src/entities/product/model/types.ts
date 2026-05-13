@@ -53,4 +53,4 @@ export interface Product {
   updated_at: string
 }
 
-export type ProductCardData = Pick< Product, 'id' | 'title' | 'slug' | 'image_url' | 'base_price' | 'discount_price' | 'rating'>
+export type ProductCardData = Pick< Product, 'id' | 'title' | 'category' | 'slug' | 'image_url' | 'base_price' | 'discount_price' | 'rating'>

@@ -7,7 +7,7 @@ export async function getPopularProducts(): Promise<ProductCardData[]> {
     .from('products')
     .select('id, title, slug, image_url, base_price, discount_price, rating')
     .eq('is_active', true)
-    .eq('is_availible', true)
+    .eq('is_available', true)
     .order('rating', { ascending: false})
     .limit(8)
 

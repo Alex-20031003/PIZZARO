@@ -14,6 +14,7 @@ export default function AppRouter() {
         <Route path='/' element={<HomePage />} />
         <Route path='/menu' element={<MenuPage />} />
         <Route path='/menu/:categorySlug' element={<MenuPage />} />
+        <Route path='/menu/:categorySlug/:product' element={<MenuPage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/contacts' element={<ContactsPage />} />
         <Route path='/checkout' element={<CheckoutPage />} />

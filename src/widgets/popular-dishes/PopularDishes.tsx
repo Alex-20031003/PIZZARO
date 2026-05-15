@@ -1,7 +1,7 @@
 import { getPopularProducts } from '@/entities/product/api/getPopularProducts';
 import Container from '@/shared/ui/Container';
 import { useQuery } from '@tanstack/react-query'
-import PopularDishesCarousel from './PopularDishesCarousel';
+import PopularDishesList from '../../entities/product/ui/PopularDishesList';
 
 
 
@@ -23,7 +23,7 @@ export default function PopularDishes() {
     <section className='mt-9 mb-9'>
       <Container className='flex flex-col'>
         <h2 className='text-4xl font-semibold mb-9 text-center'>Popular Dishes</h2>
-        <PopularDishesCarousel products={products} />
+        <PopularDishesList products={products} />
       </Container>
     </section>
 

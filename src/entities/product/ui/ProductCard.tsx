@@ -2,17 +2,24 @@ import CardBox from '@/shared/ui/CardBox';
 import { Link } from 'react-router';
 import type { ProductCardData } from '../model/types';
 import { Heart, Star } from 'lucide-react';
+import { useState } from 'react';
 
 interface ProductCardDataProps {
   product: ProductCardData
 }
 
 
+
+
 export default function PopularCard({ product }: ProductCardDataProps) {
+  const [isClick, setIsClick] = useState(false);
+
   return (
     <CardBox className='relative group'>
-      <Link to={`/menu/${product.category}/${product.slug}`} className='flex flex-col pb-3 mx-4'>
-        <img src={product.image_url} alt={product.title} className='rounded-xl' />
+      <div className='flex flex-col pb-3 mx-4'>
+        <Link to={`/menu/${product.category}/${product.slug}`}>
+          <img src={product.image_url} alt={product.title} className='rounded-xl' />
+        </Link>
         <p className='font-semibold text-lg whitespace-nowrap max-w-45 text-ellipsis overflow-hidden mb-1'>{product.title}</p>
         {product.discount_price ? (
           <div className='flex flex-row justify-between items-center mb-3.5'>
@@ -40,9 +47,9 @@ export default function PopularCard({ product }: ProductCardDataProps) {
 
         <div className='flex flex-row gap-2 items-center w-full'>
           <button type='button' className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1 hover:brightness-90 active:brightness-80 transition-brightness duration-300'>Add To Cart</button>
-          <button type='button' className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'><Heart stroke='#F05A24' /></button>
+          <button type='button' onClick={() => setIsClick(prev => !prev)} className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'><Heart stroke='#F05A24' fill={`${isClick ? '#F05A24' : 'transparent'}`} className='transition-fill duration-500' /></button>
         </div>
-      </Link>
+      </div>
     </CardBox >
   )
 }

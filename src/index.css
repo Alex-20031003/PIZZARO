@@ -20,4 +20,5 @@
 
 button{
   @apply cursor-pointer;
+  @apply hover:brightness-90 active:brightness-80 transition duration-300;
 }

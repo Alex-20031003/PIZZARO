@@ -17,3 +17,7 @@
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
+
+button{
+  @apply cursor-pointer;
+}

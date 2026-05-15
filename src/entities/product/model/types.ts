@@ -39,7 +39,7 @@ export interface Product {
   title: string,
   slug: string,
   description: string,
-  ingridients: Array<string>,
+  ingredients: Array<string>,
   tags: Array<string>,
   image_url: string,
   base_price: number,
@@ -53,4 +53,4 @@ export interface Product {
   updated_at: string
 }
 
-export type ProductCardData = Pick<Product, 'id' | 'title' | 'category' | 'slug' | 'image_url' | 'base_price' | 'discount_price' | 'rating'>
+export type ProductCardData = Pick<Product, 'id' | 'title' | 'category' | 'slug' | 'ingredients' | 'image_url' | 'base_price' | 'discount_price' | 'rating'>

@@ -34,10 +34,12 @@ export default function PopularCard({ product }: ProductCardDataProps) {
             </div>
             <p className='font-semibold text-base py-2'>${product.base_price.toFixed(2)}</p>
           </div>
-           )}
+        )}
+
+        <p className='text-sm text-(--dark-grey) font-medium italic capitalize mb-2'>{product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')}</p>
 
         <div className='flex flex-row gap-2 items-center w-full'>
-          <button type='button' className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1'>Add To Cart</button>
+          <button type='button' className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1 hover:brightness-90 active:brightness-80 transition-brightness duration-300'>Add To Cart</button>
           <button type='button' className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'><Heart stroke='#F05A24' /></button>
         </div>
       </Link>

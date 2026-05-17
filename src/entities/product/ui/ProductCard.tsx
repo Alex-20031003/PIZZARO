@@ -15,13 +15,15 @@ interface ProductCardDataProps {
 export default function PopularCard({ product, classNameCardBox }: ProductCardDataProps) {
   const [isClick, setIsClick] = useState(false);
 
+  const ingredientsList = product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')
+
   return (
     <CardBox className={`relative group ${classNameCardBox}`}>
       <div className='flex flex-col pb-3 mx-4'>
         <Link to={`/menu/${product.category}/${product.slug}`} className='self-center'>
           <img src={product.image_url} alt={product.title} className='rounded-xl' />
         </Link>
-        <p className='font-semibold text-lg whitespace-nowrap max-w-45 text-ellipsis overflow-hidden mb-1'>{product.title}</p>
+        <p className='font-semibold text-lg mb-1'>{product.title}</p>
         {product.discount_price ? (
           <div className='flex flex-row justify-between items-center mb-3.5'>
             <div className='flex flex-row gap-2 items-center'>
@@ -44,7 +46,7 @@ export default function PopularCard({ product, classNameCardBox }: ProductCardDa
           </div>
         )}
 
-        <p className='text-sm text-(--dark-grey) font-medium italic capitalize mb-2'>{product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')}</p>
+        <p title={ ingredientsList } className='text-sm text-(--dark-grey) font-medium italic capitalize mb-2 whitespace-nowrap max-w-60 text-ellipsis overflow-hidden'>{ ingredientsList }</p>
 
         <div className='flex flex-row gap-2 items-center w-full'>
           <button type='button' className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1 hover:brightness-90 active:brightness-80 transition-brightness duration-300'>Add To Cart</button>

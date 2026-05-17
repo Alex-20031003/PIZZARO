@@ -22,3 +22,13 @@ button{
   @apply cursor-pointer;
   @apply hover:brightness-90 active:brightness-80 transition duration-300;
 }
+
+@keyframes carousel-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1)
+  }
+}

@@ -6,18 +6,19 @@ import { useState } from 'react';
 
 interface ProductCardDataProps {
   product: ProductCardData
+  classNameCardBox?: string
 }
 
 
 
 
-export default function PopularCard({ product }: ProductCardDataProps) {
+export default function PopularCard({ product, classNameCardBox }: ProductCardDataProps) {
   const [isClick, setIsClick] = useState(false);
 
   return (
-    <CardBox className='relative group'>
+    <CardBox className={`relative group ${classNameCardBox}`}>
       <div className='flex flex-col pb-3 mx-4'>
-        <Link to={`/menu/${product.category}/${product.slug}`}>
+        <Link to={`/menu/${product.category}/${product.slug}`} className='self-center'>
           <img src={product.image_url} alt={product.title} className='rounded-xl' />
         </Link>
         <p className='font-semibold text-lg whitespace-nowrap max-w-45 text-ellipsis overflow-hidden mb-1'>{product.title}</p>

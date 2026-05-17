@@ -9,7 +9,7 @@ export async function getPopularProducts(): Promise<ProductCardData[]> {
     .eq('is_active', true)
     .eq('is_available', true)
     .order('rating', { ascending: false})
-    .limit(4)
+    .limit(8)
 
     if (error) throw new Error(error.message)
 

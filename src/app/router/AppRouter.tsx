@@ -19,9 +19,7 @@ export default function AppRouter() {
         <Route path='/contacts' element={<ContactsPage />} />
         <Route path='/checkout' element={<CheckoutPage />} />
         <Route path='*' element={<NotFoundPage />} />
-      </Route>
-
-      
+      </Route>      
     </Routes>
   )
 }

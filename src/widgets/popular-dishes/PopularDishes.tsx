@@ -2,7 +2,7 @@ import { getPopularProducts } from '@/entities/product/api/getPopularProducts';
 import Container from '@/shared/ui/Container';
 import { useQuery } from '@tanstack/react-query'
 import { PopularDishesCarousel } from '@/entities/product/ui/PopularDishesCarousel';
-import { LoaderCircle } from 'lucide-react';
+import PopularDishesCarouselSkeleton from '@/entities/product/ui/PopularDishesCarouselSkeleton';
 
 
 
@@ -16,14 +16,7 @@ export default function PopularDishes() {
     queryFn: getPopularProducts,
   })
 
-  if (isLoading) return (
-    <section className='mt-9 mb-9'>
-      <Container className='flex flex-col items-center'>
-        <h2 className='text-4xl font-semibold mb-9 text-center'>Popular Dishes</h2>
-        <LoaderCircle color='#F05A24' size={64} className='animate-spin' />
-      </Container>
-    </section>
-  )
+  if (isLoading) return <PopularDishesCarouselSkeleton />
 
   if (isError) return (
     <section className='mt-9 mb-9'>

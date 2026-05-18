@@ -5,7 +5,7 @@ type CardBoxProps = {
 
 export default function CardBox({ children, className }: CardBoxProps) {
   return (
-    <li className={`bg-(--light-grey) rounded-lg w-full ${className}`}>
+    <li className={`bg-(--light-grey) rounded-lg ${className ?? ''}`}>
       {children}
     </li>
   )

@@ -86,16 +86,16 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
       <div className='overflow-hidden' ref={emblaRef}>
         <ul className='flex' onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave}>
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} classNameCardBox='ml-6 shrink-0 basis-full sm:basis-[calc(50%-24px)] lg:basis-[calc(25%-24px)]' />
+            <ProductCard key={product.id} product={product} classNameCardBox='ml-6 shrink-0 basis-full min-w-20 md:basis-[calc((100%_-_24px)_/_2)] xl:basis-[calc((100%_-_72px)_/_4)]' />
           ))}
         </ul>
       </div>
 
-      <button type='button' onClick={scrollPrev} onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave} className='absolute -left-7.5 top-1/2 z-10 -translate-y-1/2 w-15 h-auto bg-(--light-grey) shadow-[0_0_5px_rgba(0,0,0,0.25)] rounded-full'>
+      <button type='button' onClick={scrollPrev} className='absolute -left-7.5 top-1/2 z-10 -translate-y-1/2 w-10 sm:w-15 h-auto bg-(--light-grey) shadow-[0_0_5px_rgba(0,0,0,0.25)] rounded-full'>
         <ChevronLeft color='#F05A24' className='w-full h-full' />
       </button>
 
-      <button type='button' onClick={scrollNext} onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave} className='absolute -right-7.5 top-1/2 z-10 -translate-y-1/2 w-15 h-auto bg-(--light-grey) shadow-[0_0_5px_rgba(0,0,0,0.25)] rounded-full'>
+      <button type='button' onClick={scrollNext} className='absolute -right-7.5 top-1/2 z-10 -translate-y-1/2 w-10 sm:w-15 h-auto bg-(--light-grey) shadow-[0_0_5px_rgba(0,0,0,0.25)] rounded-full'>
         <ChevronRight color='#F05A24' className='w-full h-full' />
       </button>
 
@@ -104,10 +104,26 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
           const isActive = index === selectedIndex
 
           return (
-            <button key={index} type='button' onClick={() => scrollTo(index)} className={`relative h-4 overflow-hidden rounded-full bg-black/20 transition-all duration-300 ${isActive ? 'w-8' : 'w-4'}`}>
-              { isActive && (
-                <span key={selectedIndex} className='absolute left-0 top-0 h-full w-full origin-left rounded-full bg-(--primary)' style={{ animation: `carousel-progress ${AUTOPLAY_DELAY}ms linear forwards`, animationPlayState: isPause ? 'paused' : 'running', }} />
-              ) }
+            <button
+              key={index - selectedIndex}
+              type="button"
+              onClick={() => scrollTo(index)}
+              className={`relative h-3 overflow-hidden rounded-full bg-black/20 transition-all duration-300 ${isActive ? 'w-8' : 'w-4'
+                }`}
+            >
+              {isActive && (
+                <span
+                  key={selectedIndex}
+                  className="absolute left-0 top-0 h-full w-full origin-left rounded-full bg-(--primary)"
+                  style={{
+                    animationName: 'carousel-progress',
+                    animationDuration: `${AUTOPLAY_DELAY}ms`,
+                    animationTimingFunction: 'linear',
+                    animationFillMode: 'forwards',
+                    animationPlayState: isPause ? 'paused' : 'running',
+                  }}
+                />
+              )}
             </button>
           )
         })}

@@ -1,4 +1,4 @@
-import BannerImage from '@/assets/Banner-hero.webp'
+import BannerImage from '@/assets/home-page/Banner-hero.webp'
 import Container from '@/shared/ui/Container'
 import { Link } from 'react-router'
 

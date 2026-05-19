@@ -21,7 +21,7 @@ export default function PopularCard({ product, classNameCardBox }: ProductCardDa
     <CardBox className={`relative group ${classNameCardBox}`}>
       <div className='flex flex-col pb-3 mx-4'>
         <Link to={`/menu/${product.category}/${product.slug}`} className='self-center'>
-          <img src={product.image_url} alt={product.title} loading='lazy' className='sm:min-w-60 object-contain rounded-xl' />
+          <img src={product.image_url} alt={product.title} loading='lazy' decoding='async' className='sm:min-w-60 object-contain rounded-xl' />
         </Link>
         <p className='font-semibold text-lg mb-1'>{product.title}</p>
         {product.discount_price ? (

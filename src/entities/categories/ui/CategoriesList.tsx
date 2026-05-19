@@ -10,7 +10,7 @@ export default function CardList() {
       {categories.map(category => (
         <CardBox key={category.id}>
           <Link to={`/menu/${category.slug}`} className='relative flex flex-col items-center justify-center pb-3'>
-            <img src={category.image_url} alt={category.title} className='rounded-xl' loading='lazy' />
+            <img src={category.image_url} alt={category.title} className='rounded-xl' loading='lazy' decoding='async' />
             <h3 className='text-2xl font-bold'>{category.title}</h3>
             <ChevronRight className='absolute right-3 bottom-3 size-8 text-[#F05A24]' strokeWidth={2.5} />
           </Link>

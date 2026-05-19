@@ -1,8 +1,8 @@
 import { getPopularProducts } from '@/entities/product/api/getPopularProducts';
 import Container from '@/shared/ui/Container';
 import { useQuery } from '@tanstack/react-query'
-import { PopularDishesCarousel } from '@/entities/product/ui/PopularDishesCarousel';
-import PopularDishesCarouselSkeleton from '@/entities/product/ui/PopularDishesCarouselSkeleton';
+import { PopularDishesCarousel } from '@/widgets/popular-dishes/PopularDishesCarousel';
+import PopularDishesCarouselSkeleton from '@/widgets/popular-dishes/PopularDishesCarouselSkeleton';
 
 
 
@@ -14,6 +14,8 @@ export default function PopularDishes() {
   } = useQuery({
     queryKey: ['popularProducts'],
     queryFn: getPopularProducts,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 15
   })
 
   if (isLoading) return <PopularDishesCarouselSkeleton />

@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import type { ProductCardData } from '../model/types'
+import type { ProductCardData } from '../../entities/product/model/types'
 import ProductCard from '@/entities/product/ui/ProductCard'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import useInView from '@/shared/lib/hooks/useInView'
 
 interface PopularDishesCarouselProps {
   products: ProductCardData[]
@@ -12,6 +13,11 @@ interface PopularDishesCarouselProps {
 const AUTOPLAY_DELAY = 3000
 
 export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) {
+  const { ref: carouselVisibilityRef, isInView } = useInView<HTMLDivElement>({
+    once: false,
+    threshold: 0.3
+  })
+
   const autoplay = useRef(
     Autoplay({
       delay: AUTOPLAY_DELAY,
@@ -41,11 +47,9 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
     emblaApi?.scrollNext()
   }, [emblaApi])
 
-  const scrollTo = useCallback(
-    (index: number) => {
-      emblaApi?.scrollTo(index)
-    },
-    [emblaApi]
+  const scrollTo = useCallback((index: number) => {
+    emblaApi?.scrollTo(index)
+  }, [emblaApi]
   )
 
   const onSelect = useCallback(() => {
@@ -69,6 +73,16 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
     }
   }, [emblaApi, onSelect])
 
+  useEffect(() => {
+    if (!emblaApi) return
+
+    if (isInView && !isPause) {
+      autoplay.current.play()
+    } else {
+      autoplay.current.stop()
+    }
+  }, [emblaApi, isInView, isPause])
+
   if (!products.length) return null
 
   const handelMouseEnter = () => {
@@ -78,11 +92,14 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
 
   const handelMouseLeave = () => {
     setIsPause(false)
-    autoplay.current.play()
+
+    if (isInView) {
+      autoplay.current.play()
+    }
   }
 
   return (
-    <div className='relative'>
+    <div ref={carouselVisibilityRef} className='relative'>
       <div className='overflow-hidden' ref={emblaRef}>
         <ul className='flex' onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave}>
           {products.map((product) => (
@@ -105,7 +122,7 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
 
           return (
             <button
-              key={index - selectedIndex}
+              key={index}
               type="button"
               onClick={() => scrollTo(index)}
               className={`relative h-3 overflow-hidden rounded-full bg-black/20 transition-all duration-300 ${isActive ? 'w-8' : 'w-4'
@@ -120,7 +137,7 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
                     animationDuration: `${AUTOPLAY_DELAY}ms`,
                     animationTimingFunction: 'linear',
                     animationFillMode: 'forwards',
-                    animationPlayState: isPause ? 'paused' : 'running',
+                    animationPlayState: isPause || !isInView ? 'paused' : 'running',
                   }}
                 />
               )}

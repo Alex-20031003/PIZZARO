@@ -13,5 +13,5 @@ export async function getPopularProducts(): Promise<ProductCardData[]> {
 
     if (error) throw new Error(error.message)
 
-    return data as ProductCardData[]
+    return data as ProductCardData[] ?? []
 }

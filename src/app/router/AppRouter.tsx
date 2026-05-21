@@ -1,6 +1,6 @@
 import { MainLayout } from '@/app/layouts/MainLayout';
 import { Routes, Route } from 'react-router';
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 const HomePage = lazy(() => import('@/pages/home/HomePage'))
 const MenuPage = lazy(() => import('@/pages/menu/MenuPage'))
 const AboutPage = lazy(() => import('@/pages/about/AboutPage'))
@@ -10,17 +10,19 @@ const NotFoundPage = lazy(() => import('@/pages/not-found/NotFoundPage'))
 
 export default function AppRouter() {
   return (
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/menu' element={<MenuPage />} />
-        <Route path='/menu/:categorySlug' element={<MenuPage />} />
-        <Route path='/menu/:categorySlug/:product' element={<MenuPage />} />
-        <Route path='/about' element={<AboutPage />} />
-        <Route path='/contacts' element={<ContactsPage />} />
-        <Route path='/checkout' element={<CheckoutPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <Suspense>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/menu' element={<MenuPage />} />
+          <Route path='/menu/:categorySlug' element={<MenuPage />} />
+          <Route path='/menu/:categorySlug/:product' element={<MenuPage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/contacts' element={<ContactsPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   )
 }

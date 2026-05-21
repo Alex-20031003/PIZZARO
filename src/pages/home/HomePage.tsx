@@ -2,7 +2,7 @@ import AboutUs from '@/widgets/about-us/AboutUs';
 import Banner from '@/widgets/banner/Banner';
 import Categories from '@/widgets/categories/Categories';
 import PopularDishes from '@/widgets/popular-dishes/PopularDishes';
-import LazySection from './../../shared/ui/LazySection';
+import LazySection from '@/shared/ui/LazySection';
 
 export default function HomePage() {
 

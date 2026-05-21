@@ -9,9 +9,6 @@ interface ProductCardDataProps {
   classNameCardBox?: string
 }
 
-
-
-
 export default function PopularCard({ product, classNameCardBox }: ProductCardDataProps) {
   const [isClick, setIsClick] = useState(false);
 

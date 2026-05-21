@@ -33,7 +33,7 @@ export default function PopularDishes() {
     <section className='mt-9 mb-9'>
       <Container className='flex flex-col'>
         <h2 className='text-4xl font-semibold mb-9 text-center'>Popular Dishes</h2>
-        <PopularDishesCarousel products={products} />
+        <PopularDishesCarousel products={products ?? []} />
       </Container>
     </section>
 

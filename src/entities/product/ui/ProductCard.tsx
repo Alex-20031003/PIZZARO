@@ -2,7 +2,7 @@ import CardBox from '@/shared/ui/CardBox';
 import { Link } from 'react-router';
 import type { ProductCardData } from '../model/types';
 import { Heart, Star } from 'lucide-react';
-import { useState } from 'react';
+import { useCartStore } from '@/features/cart/model/useCartStore';
 
 interface ProductCardDataProps {
   product: ProductCardData
@@ -10,8 +10,8 @@ interface ProductCardDataProps {
 }
 
 export default function PopularCard({ product, classNameCardBox }: ProductCardDataProps) {
-  const [isClick, setIsClick] = useState(false);
-
+  const addItem = useCartStore((state) => state.addItem)
+  const items = useCartStore((state) => state.items)
   const ingredientsList = product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')
 
   return (
@@ -43,11 +43,35 @@ export default function PopularCard({ product, classNameCardBox }: ProductCardDa
           </div>
         )}
 
-        <p title={ ingredientsList } className='text-sm text-(--dark-grey) font-medium italic capitalize mb-2 whitespace-nowrap max-w-60 text-ellipsis overflow-hidden'>{ ingredientsList }</p>
+        <p title={ ingredientsList } className='text-sm text-(--dark-grey) font-medium italic capitalize mb-2 whitespace-nowrap max-w-60 text-ellipsis overflow-hidden'>
+          { ingredientsList }
+        </p>
 
         <div className='flex flex-row gap-2 items-center w-full'>
-          <button type='button' className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1 hover:brightness-90 active:brightness-80 transition-brightness duration-300'>Add To Cart</button>
-          <button type='button' onClick={() => setIsClick(prev => !prev)} className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'><Heart stroke='#F05A24' fill={`${isClick ? '#F05A24' : 'transparent'}`} className='transition-fill duration-500' /></button>
+          <button 
+            type='button' 
+            onClick={() => {
+              addItem({
+                id: product.id,
+                title: product.title,
+                image_url: product.image_url,
+                price: product.discount_price ?? product.base_price
+            })
+              
+            console.log('Added to cart:', items)
+            console.log('Added to cart:', product.title)
+          }}
+            className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1'
+          >
+            Add To Cart
+          </button>
+          
+          <button 
+            type='button' 
+            className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'
+            >
+              <Heart stroke='#F05A24' className='transition-fill duration-500' />
+          </button>
         </div>
       </div>
     </CardBox >

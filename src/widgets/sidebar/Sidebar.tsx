@@ -1,6 +1,7 @@
 import type { SidebarType } from './sidebar.types'
 import { X } from 'lucide-react'
 import MobileNav from '../header/MobileNav'
+import CartSidebarContent from '@/features/cart/ui/CartSidebarContent'
 
 type SidebarProps = {
   activeSidebar: SidebarType
@@ -22,17 +23,19 @@ export default function Sidebar({ activeSidebar, onClose, onOpenCart, onOpenFavo
       />
 
       <aside
-        className={`fixed top-0 right-0 z-50 h-full w-full max-w-full sm:max-w-105 py-6 px-10 bg-white shadow-xl transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 right-0 z-50 flex h-full w-full max-h-screen max-w-full flex-col overflow-hidden sm:max-w-105 py-5 px-10 bg-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         <button type="button" onClick={onClose}>
           <X size={36} />
         </button>
 
-        {activeSidebar === 'cart' && <div>Cart content</div>}
-        {activeSidebar === 'favorite' && <div>Favorite content</div>}
-        {activeSidebar === 'user' && <div>User content</div>}
-        {activeSidebar === 'navigation' && <MobileNav onOpenCart={onOpenCart} onOpenFavorite={onOpenFavorite} onOpenUser={onOpenUser} onClose={onClose} />}
+        <div className='min-h-0 flex-1'>
+          {activeSidebar === 'cart' && <CartSidebarContent onClose={onClose} />}
+          {activeSidebar === 'favorite' && <div>Favorite content</div>}
+          {activeSidebar === 'user' && <div>User content</div>}
+          {activeSidebar === 'navigation' && <MobileNav onOpenCart={onOpenCart} onOpenFavorite={onOpenFavorite} onOpenUser={onOpenUser} onClose={onClose} />}
+        </div>
       </aside>
     </>
   )

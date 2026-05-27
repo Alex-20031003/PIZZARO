@@ -130,7 +130,13 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
   return (
     <div ref={carouselVisibilityRef} className='relative outline-none'>
       <div className='overflow-hidden' ref={emblaRef}>
-        <ul className='flex' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <ul className='flex' 
+          onPointerEnter={(e) => 
+            { if(e.pointerType !== 'mouse') return 
+            handleMouseEnter()}} 
+          onPointerLeave={(e) => 
+            { if(e.pointerType !== 'mouse') return 
+            handleMouseLeave()}}>
           {products.map((product) => (
             <ProductCard key={product.id} product={product} classNameCardBox='ml-6 shrink-0 basis-full min-w-20 md:basis-[calc((100%_-_24px)_/_2)] xl:basis-[calc((100%_-_72px)_/_4)]' />
           ))}

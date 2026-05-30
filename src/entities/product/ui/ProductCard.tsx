@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import type { ProductCardData } from '../model/types';
 import { Heart, Star } from 'lucide-react';
 import { useCartStore } from '@/features/cart/model/useCartStore';
+import { useFavoriteStore } from '@/features/favorite/model/useFavoriteStore';
 
 interface ProductCardDataProps {
   product: ProductCardData
@@ -12,6 +13,8 @@ interface ProductCardDataProps {
 export default function PopularCard({ product, classNameCardBox }: ProductCardDataProps) {
   const addItem = useCartStore((state) => state.addItem)
   const items = useCartStore((state) => state.items)
+  const toggleFavorite = useFavoriteStore((state) => state.toggleFavorite)
+  const isFavorite = useFavoriteStore((state) => state.items.some((item) => item.id === product.id))
   const ingredientsList = product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')
 
   return (
@@ -67,10 +70,20 @@ export default function PopularCard({ product, classNameCardBox }: ProductCardDa
           </button>
           
           <button 
-            type='button' 
+            type='button'
+            onClick={() => 
+              toggleFavorite({
+                id: product.id,
+                title: product.title,
+                image_url: product.image_url,
+                price: product.discount_price ?? product.base_price,
+                rating: product.rating
+            })}
             className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'
             >
-              <Heart stroke='#F05A24' className='transition-fill duration-500' />
+              <Heart 
+                stroke='#F05A24' 
+                className={` ${ isFavorite ? 'fill-(--primary)' : '' } transition-fill duration-500 `} />
           </button>
         </div>
       </div>

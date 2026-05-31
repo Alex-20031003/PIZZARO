@@ -18,7 +18,7 @@ export default function ProductCard({ product, classNameCardBox }: ProductCardDa
   const ingredientsList = product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')
 
   return (
-    <CardBox className={`relative group ${classNameCardBox}`}>
+    <CardBox className={`relative group ${classNameCardBox ?? ''}`}>
       <div className='flex flex-col pb-3 mx-4'>
         <Link to={`/menu/${product.category}/${product.slug}`} className='self-center'>
           <img src={product.image_url} alt={product.title} loading='lazy' decoding='async' className='sm:min-w-60 object-contain rounded-xl' />

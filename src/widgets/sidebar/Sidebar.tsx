@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import MobileNav from '../header/MobileNav'
 import CartSidebarContent from '@/features/cart/ui/CartSidebarContent'
 import FavoriteSidebarContent from '@/features/favorite/ui/FavoriteSidebarContent'
+import { useEffect } from 'react'
 
 type SidebarProps = {
   activeSidebar: SidebarType
@@ -14,6 +15,14 @@ type SidebarProps = {
 
 export default function Sidebar({ activeSidebar, onClose, onOpenCart, onOpenFavorite, onOpenUser }: SidebarProps) {
   const isOpen = activeSidebar !== null
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
 
   return (
     <>

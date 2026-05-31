@@ -1,10 +1,10 @@
 import { create } from 'zustand'
-import type { FavoriteItem } from './types'
 import { persist } from 'zustand/middleware'
+import type { ProductCardData } from '@/entities/product/model/types'
 
 interface FavoriteState {
-  items: FavoriteItem[]
-  toggleFavorite: (item: FavoriteItem) => void
+  items: ProductCardData[]
+  toggleFavorite: (item: ProductCardData) => void
   clearFavorites: () => void
 }
 

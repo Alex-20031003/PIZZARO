@@ -10,7 +10,7 @@ interface ProductCardDataProps {
   classNameCardBox?: string
 }
 
-export default function PopularCard({ product, classNameCardBox }: ProductCardDataProps) {
+export default function ProductCard({ product, classNameCardBox }: ProductCardDataProps) {
   const addItem = useCartStore((state) => state.addItem)
   const items = useCartStore((state) => state.items)
   const toggleFavorite = useFavoriteStore((state) => state.toggleFavorite)
@@ -75,8 +75,12 @@ export default function PopularCard({ product, classNameCardBox }: ProductCardDa
               toggleFavorite({
                 id: product.id,
                 title: product.title,
+                category: product.category,
+                slug: product.slug,
                 image_url: product.image_url,
-                price: product.discount_price ?? product.base_price,
+                base_price: product.base_price,
+                discount_price: product.discount_price,
+                ingredients: product.ingredients,
                 rating: product.rating
             })}
             className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'

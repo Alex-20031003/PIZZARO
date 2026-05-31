@@ -7,6 +7,6 @@ interface FavoriteItemCardProps {
 
 export default function FavoriteItemCard({ item }: FavoriteItemCardProps) {
   return (
-    <ProductCard product={item} />
+    <ProductCard product={item} classNameCardBox='mb-4' />
   )
 }

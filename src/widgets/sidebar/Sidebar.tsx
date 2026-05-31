@@ -2,6 +2,7 @@ import type { SidebarType } from './sidebar.types'
 import { X } from 'lucide-react'
 import MobileNav from '../header/MobileNav'
 import CartSidebarContent from '@/features/cart/ui/CartSidebarContent'
+import FavoriteSidebarContent from '@/features/favorite/ui/FavoriteSidebarContent'
 
 type SidebarProps = {
   activeSidebar: SidebarType
@@ -32,7 +33,7 @@ export default function Sidebar({ activeSidebar, onClose, onOpenCart, onOpenFavo
 
         <div className='min-h-0 flex-1'>
           {activeSidebar === 'cart' && <CartSidebarContent onClose={onClose} />}
-          {activeSidebar === 'favorite' && <div>Favorite content</div>}
+          {activeSidebar === 'favorite' && <FavoriteSidebarContent />}
           {activeSidebar === 'user' && <div>User content</div>}
           {activeSidebar === 'navigation' && <MobileNav onOpenCart={onOpenCart} onOpenFavorite={onOpenFavorite} onOpenUser={onOpenUser} onClose={onClose} />}
         </div>

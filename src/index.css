@@ -18,16 +18,21 @@
   font-family: 'Inter', sans-serif;
 }
 
-body::-webkit-scrollbar{
+html{
+  scrollbar-width: auto;
+  scrollbar-color: #f05a24 transparent;
+}
+
+html::-webkit-scrollbar{
   width: 0.4rem;
 }
 
-body::-webkit-scrollbar-track{
+html::-webkit-scrollbar-track{
   background-color: transparent;
   border-radius: 0.625rem;
 }
 
-body::-webkit-scrollbar-thumb{
+html::-webkit-scrollbar-thumb{
   background-color: #f05a24;
   border-radius: 0.625rem;
 }

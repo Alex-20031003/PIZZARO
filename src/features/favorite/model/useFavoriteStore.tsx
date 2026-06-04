@@ -6,11 +6,12 @@ interface FavoriteState {
   items: ProductCardData[]
   toggleFavorite: (item: ProductCardData) => void
   clearFavorites: () => void
+  getTotalFavoritesCount: () => number
 }
 
 export const useFavoriteStore = create<FavoriteState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       items: [],
 
       toggleFavorite: (item) => set((state) => {
@@ -28,6 +29,8 @@ export const useFavoriteStore = create<FavoriteState>()(
       }),
 
       clearFavorites: () => set({ items: [] }),
+
+      getTotalFavoritesCount: () => get().items.length,
     }),
     {
       name: 'favorite-storage',

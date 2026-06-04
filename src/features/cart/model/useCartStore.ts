@@ -9,7 +9,7 @@ interface CartState {
   increaseQuantity: (id: number) => void
   decreaseQuantity: (id: number) => void
   clearCart: () => void
-  getTotalCount: () => number
+  getTotalCartCount: () => number
 }
 
 export const useCartStore = create<CartState>()(
@@ -65,7 +65,7 @@ export const useCartStore = create<CartState>()(
 
       clearCart: () => set({ items: [] }),
     
-      getTotalCount: () => get().items.reduce((total, item) => total + item.quantity, 0),
+      getTotalCartCount: () => get().items.reduce((total, item) => total + item.quantity, 0),
     }),
     {
       name: 'cart-storage',

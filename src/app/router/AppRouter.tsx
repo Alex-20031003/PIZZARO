@@ -1,5 +1,5 @@
 import { MainLayout } from '@/app/layouts/MainLayout';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import { lazy, Suspense } from 'react'
 const HomePage = lazy(() => import('@/pages/home/HomePage'))
 const MenuPage = lazy(() => import('@/pages/menu/MenuPage'))
@@ -14,9 +14,9 @@ export default function AppRouter() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path='/' element={<HomePage />} />
-          <Route path='/menu' element={<MenuPage />} />
+          <Route path='/menu' element={ <Navigate to='/menu/all' replace />} />
           <Route path='/menu/:categorySlug' element={<MenuPage />} />
-          <Route path='/menu/:categorySlug/:product' element={<MenuPage />} />
+          {/* <Route path='/menu/:categorySlug/:product' element={<ProductModal />} /> */}
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contacts' element={<ContactsPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />

@@ -4,3 +4,7 @@ export interface Category {
   slug: string,
   image_url: string
 }
+
+export interface categoryMenu extends Omit<Category, 'image_url'> {
+  icon: string
+}

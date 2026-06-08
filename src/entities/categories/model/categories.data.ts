@@ -2,11 +2,11 @@ import pizza from '@/assets/categories/pizza_pepperoni.webp';
 import sushi from '@/assets/categories/sushi_mixset.webp';
 import burger from '@/assets/categories/burger_bbq.webp';
 import drink from '@/assets/categories/drink_cola.webp';
-import allIcon from '@/assets/categories/allSvg.svg'
-import pizzaIcon from '@/assets/categories/pizzaSvg.svg'
-import sushiIcon from '@/assets/categories/sushiSvg.svg'
-import burgerIcon from '@/assets/categories/sushiSvg.svg'
-import drinkIcon from '@/assets/categories/drinkSvg.svg'
+import allIcon from '@/assets/categories/allSvg.svg?react'
+import pizzaIcon from '@/assets/categories/pizzaSvg.svg?react'
+import sushiIcon from '@/assets/categories/sushiSvg.svg?react'
+import burgerIcon from '@/assets/categories/burgerSvg.svg?react'
+import drinkIcon from '@/assets/categories/drinkSvg.svg?react'
 import type { Category, categoryMenu } from './types';
 
 

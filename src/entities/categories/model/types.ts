@@ -1,3 +1,5 @@
+import type { ComponentType, SVGProps } from 'react'
+
 export interface Category {
   id: number,
   title: string,
@@ -6,5 +8,5 @@ export interface Category {
 }
 
 export interface categoryMenu extends Omit<Category, 'image_url'> {
-  icon: string
+  icon: ComponentType<SVGProps<SVGSVGElement>>
 }

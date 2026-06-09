@@ -5,6 +5,8 @@ import type { ProductCardData } from '../../entities/product/model/types'
 import ProductCard from '@/entities/product/ui/ProductCard'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import useInView from '@/shared/lib/hooks/useInView'
+import AddToCartButton from './../../features/cart/ui/AddToCartButton';
+import ToggleFavoriteButton from '@/features/favorite/ui/ToggleFavoriteButton'
 
 interface PopularDishesCarouselProps {
   products: ProductCardData[]
@@ -138,7 +140,16 @@ export function PopularDishesCarousel({ products }: PopularDishesCarouselProps) 
             { if(e.pointerType !== 'mouse') return 
             handleMouseLeave()}}>
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} classNameCardBox='ml-6 shrink-0 basis-full min-w-20 md:basis-[calc((100%_-_24px)_/_2)] xl:basis-[calc((100%_-_72px)_/_4)]' />
+            <ProductCard 
+              key={product.id} 
+              product={product}
+              action={
+                <>
+                  <AddToCartButton product={product} />
+                  <ToggleFavoriteButton product={product} />
+                </>
+              } 
+              classNameCardBox='ml-6 shrink-0 basis-full min-w-20 md:basis-[calc((100%_-_24px)_/_2)] xl:basis-[calc((100%_-_72px)_/_4)]' />
           ))}
         </ul>
       </div>

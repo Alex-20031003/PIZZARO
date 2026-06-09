@@ -1,20 +1,16 @@
 import CardBox from '@/shared/ui/CardBox';
 import { Link } from 'react-router';
 import type { ProductCardData } from '../model/types';
-import { Heart, Star } from 'lucide-react';
-import { useCartStore } from '@/features/cart/model/useCartStore';
-import { useFavoriteStore } from '@/features/favorite/model/useFavoriteStore';
+import { Star } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 interface ProductCardDataProps {
   product: ProductCardData
   classNameCardBox?: string
+  action?: ReactNode
 }
 
-export default function ProductCard({ product, classNameCardBox }: ProductCardDataProps) {
-  const addItem = useCartStore((state) => state.addItem)
-  const items = useCartStore((state) => state.items)
-  const toggleFavorite = useFavoriteStore((state) => state.toggleFavorite)
-  const isFavorite = useFavoriteStore((state) => state.items.some((item) => item.id === product.id))
+export default function ProductCard({ product, classNameCardBox, action }: ProductCardDataProps) {
   const ingredientsList = product.ingredients.map(ingredient => ingredient.replaceAll('_', ' ')).join(', ')
 
   return (
@@ -51,44 +47,7 @@ export default function ProductCard({ product, classNameCardBox }: ProductCardDa
         </p>
 
         <div className='flex flex-row gap-2 items-center w-full'>
-          <button 
-            type='button' 
-            onClick={() => {
-              addItem({
-                id: product.id,
-                title: product.title,
-                image_url: product.image_url,
-                price: product.discount_price ?? product.base_price
-            })
-              
-            console.log('Added to cart:', items)
-            console.log('Added to cart:', product.title)
-          }}
-            className='bg-(--primary) text-white rounded-xl py-3 w-full flex-1'
-          >
-            Add To Cart
-          </button>
-          
-          <button 
-            type='button'
-            onClick={() => 
-              toggleFavorite({
-                id: product.id,
-                title: product.title,
-                category: product.category,
-                slug: product.slug,
-                image_url: product.image_url,
-                base_price: product.base_price,
-                discount_price: product.discount_price,
-                ingredients: product.ingredients,
-                rating: product.rating
-            })}
-            className='p-3 bg-inherit rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.25)]'
-            >
-              <Heart 
-                stroke='#F05A24' 
-                className={` ${ isFavorite ? 'fill-(--primary)' : '' } transition-fill duration-500 `} />
-          </button>
+          { action }
         </div>
       </div>
     </CardBox >

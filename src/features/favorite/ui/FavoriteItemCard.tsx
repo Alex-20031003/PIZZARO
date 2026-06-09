@@ -1,12 +1,22 @@
 import ProductCard from '@/entities/product/ui/ProductCard'
 import type { ProductCardData } from '@/entities/product/model/types'
+import AddToCartButton from './../../cart/ui/AddToCartButton';
+import ToggleFavoriteButton from './ToggleFavoriteButton';
 
 interface FavoriteItemCardProps {
-  item: ProductCardData
+  product: ProductCardData
 }
 
-export default function FavoriteItemCard({ item }: FavoriteItemCardProps) {
+export default function FavoriteItemCard({ product }: FavoriteItemCardProps) {
   return (
-    <ProductCard product={item} classNameCardBox='mb-4' />
+    <ProductCard 
+      product={product}
+      action={
+        <>
+          <AddToCartButton product={product} />
+          <ToggleFavoriteButton product={product} />
+        </>
+      } 
+      classNameCardBox='mb-4' />
   )
 }

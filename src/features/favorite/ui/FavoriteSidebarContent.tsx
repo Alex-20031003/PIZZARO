@@ -4,17 +4,17 @@ import EmptyFavorite from './EmptyFavorite'
 
 
 export default function FavoriteSidebarContent() {
-  const items = useFavoriteStore((state) => state.items)
+  const products = useFavoriteStore((state) => state.items)
 
 
   return (
     <div className='flex h-full flex-col'>
       <h2 className='font-semibold text-3xl my-6'>Favorite</h2>
 
-      {items.length > 0 ? (
+      {products.length > 0 ? (
         <ul className='flex-1 overflow-y-auto overscroll-container [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden '>
-          {items.map((item) => (
-            <FavoriteItemCard key={item.id} item={item} />
+          {products.map((product) => (
+            <FavoriteItemCard key={product.id} product={product} />
           ))}
         </ul>
       ) : (

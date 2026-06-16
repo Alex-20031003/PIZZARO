@@ -1,0 +1,1 @@
+export { default as PopularDishes } from './ui/PopularDishes'

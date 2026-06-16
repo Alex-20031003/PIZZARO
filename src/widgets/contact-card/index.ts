@@ -1,0 +1,1 @@
+export { default as  CantactCard} from './ui/ContactCard'

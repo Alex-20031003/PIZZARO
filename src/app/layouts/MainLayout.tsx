@@ -1,7 +1,7 @@
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 import { Outlet } from 'react-router'
-import {SidebarPortal, useSidebar} from '@/widgets/sidebar'
+import { SidebarPortal, useSidebar } from '@/widgets/sidebar'
 
 export function MainLayout() {
   const {

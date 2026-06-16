@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import type { ProductCardData } from '../../entities/product/model/types'
+import type { ProductCardData } from '@/entities/product'
 import ProductCard from '@/entities/product/ui/ProductCard'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import useInView from '@/shared/lib/hooks/useInView'
-import AddToCartButton from './../../features/cart/ui/AddToCartButton';
+import { AddToCartButton } from '@/features/cart';
 import ToggleFavoriteButton from '@/features/favorite/ui/ToggleFavoriteButton'
 
 interface PopularDishesCarouselProps {

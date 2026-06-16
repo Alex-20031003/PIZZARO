@@ -1,5 +1,7 @@
 import Container from '@/shared/ui/Container';
-import { MENU_ITEMS, CONTACT_ITEMS, INFO_ITEMS, SOCIAL_ITEMS } from './footer.data';
+import { CONTACT_ITEMS, INFO_ITEMS } from '../model/data';
+import { SOCIAL_ITEMS } from '@/shared/model/constants'
+import { categories } from '@/entities/categories';
 import logo from '@/assets/logo.svg';
 import { Link } from 'react-router';
 
@@ -19,9 +21,9 @@ export default function Footer() {
           <div className='flex flex-col items-start'>
             <h1 className='lg:text-xl text-lg text-white lg:mb-4 mb-2'>Menu</h1>
             <ul className='flex flex-col gap-2'>
-              {MENU_ITEMS.map(({ to, label }) => (
-                <li key={to} className='lg:text-base text-sm text-white/80 hover:text-(--primary) transition-colors duration-300'>
-                  <Link to={to}>{label}</Link>
+              {categories.map(({ id, slug, title }) => (
+                <li key={id} className='lg:text-base text-sm text-white/80 hover:text-(--primary) transition-colors duration-300'>
+                  <Link to={`/menu/${slug}`}>{title}</Link>
                 </li>
               ))}
             </ul>

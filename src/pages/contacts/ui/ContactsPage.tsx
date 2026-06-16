@@ -1,5 +1,5 @@
 import Container from '@/shared/ui/Container'
-import ContactCard from '@/widgets/contact-card/ContactCard'
+import { ContactCard } from '@/widgets/contact-card'
 import { Link, Mail, Phone } from 'lucide-react'
 
 export default function ContactsPage() {

@@ -1,1 +1,1 @@
-export { default as  CantactCard} from './ui/ContactCard'
+export { default as  ContactCard } from './ui/ContactCard'

@@ -1,8 +1,8 @@
-import type { SidebarType } from './sidebar.types'
+import type { SidebarType } from '../model/types'
 import { X } from 'lucide-react'
-import MobileNav from '../header/MobileNav'
-import CartSidebarContent from '@/features/cart/ui/CartSidebarContent'
-import FavoriteSidebarContent from '@/features/favorite/ui/FavoriteSidebarContent'
+import { MobileNav } from '@/widgets/header'
+import { CartSidebarContent } from '@/features/cart'
+import { FavoriteSidebarContent } from '@/features/favorite'
 import { useEffect } from 'react'
 
 type SidebarProps = {

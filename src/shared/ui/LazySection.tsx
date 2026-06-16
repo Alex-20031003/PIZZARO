@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import useInView from '../lib/hooks/useInView'
+import useInView from '@/shared/lib/hooks/useInView'
 
 interface LazySectionProps {
   children: ReactNode

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { SidebarType } from './sidebar.types';
+import type { SidebarType } from './types';
 
 export function useSidebar() {
   const [activeSidebar, setActiveSidebar] = useState<SidebarType>(null)

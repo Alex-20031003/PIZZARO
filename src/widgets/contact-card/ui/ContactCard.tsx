@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { SOCIAL_ITEMS } from '../footer/footer.data'
+import { SOCIAL_ITEMS } from '@/shared/model/constants'
 
 interface ContactCardProps {
   icon: LucideIcon

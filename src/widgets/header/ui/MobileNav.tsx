@@ -1,4 +1,4 @@
-import { navItems } from './header.data'
+import { navItems } from '../model/data'
 import { NavLink } from 'react-router';
 
 type MobileNavProps ={

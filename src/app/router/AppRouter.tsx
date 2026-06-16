@@ -1,12 +1,12 @@
 import { MainLayout } from '@/app/layouts/MainLayout';
 import { Routes, Route, Navigate } from 'react-router';
 import { lazy, Suspense } from 'react'
-const HomePage = lazy(() => import('@/pages/home/HomePage'))
-const MenuPage = lazy(() => import('@/pages/menu/MenuPage'))
-const AboutPage = lazy(() => import('@/pages/about/AboutPage'))
-const ContactsPage = lazy(() => import('@/pages/contacts/ContactsPage'))
-const CheckoutPage = lazy(() => import('@/pages/checkout/CheckoutPage'))
-const NotFoundPage = lazy(() => import('@/pages/not-found/NotFoundPage'))
+const HomePage = lazy(() => import('@/pages/home'))
+const MenuPage = lazy(() => import('@/pages/menu'))
+const AboutPage = lazy(() => import('@/pages/about'))
+const ContactsPage = lazy(() => import('@/pages/contacts'))
+const CheckoutPage = lazy(() => import('@/pages/checkout'))
+const NotFoundPage = lazy(() => import('@/pages/not-found'))
 
 export default function AppRouter() {
   return (

@@ -1,6 +1,6 @@
 import Container from '@/shared/ui/Container';
-import MenuCategoriesNavigation from '@/widgets/menu-navigation/MenuCategoriesNavigation';
-import Search from '@/widgets/search/Search';
+import { MenuCategoriesNavigation } from '@/widgets/menu-navigation';
+import { Search } from '@/widgets/search';
 
 export default function MenuPage() {
   return (

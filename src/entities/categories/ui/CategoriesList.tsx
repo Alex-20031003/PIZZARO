@@ -1,7 +1,7 @@
 import CardBox from '@/shared/ui/CardBox'
 import { ChevronRight } from 'lucide-react'
 import { Link } from 'react-router'
-import { categories } from '../model/categories.data'
+import { categories } from '../model/data'
 
 
 export default function CardList() {

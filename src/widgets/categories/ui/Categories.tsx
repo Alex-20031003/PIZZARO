@@ -1,5 +1,5 @@
 import Container from '@/shared/ui/Container';
-import CategoriesList from '@/entities/categories/ui/CategoriesList';
+import { CategoriesList } from '@/entities/categories';
 
 export default function Categories() {
   return (

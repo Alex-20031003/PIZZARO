@@ -1,4 +1,4 @@
-import { categoriesMenu } from '@/entities/categories/model/categories.data'
+import { categoriesMenu } from '@/entities/categories'
 import { Check } from 'lucide-react'
 import { NavLink } from 'react-router'
 

@@ -1,7 +1,7 @@
 import Container from '@/shared/ui/Container'
-import NavItems from './NavItems'
-import Logo from './Logo'
-import IconItems from './IconItems'
+import NavItems from '../ui/NavItems'
+import Logo from '../ui/Logo'
+import IconItems from '../ui/IconItems'
 
 type HeaderProps = {
   onOpenCart: () => void

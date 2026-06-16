@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router';
-import { navItems } from './header.data';
+import { navItems } from '../model/data';
 
 export default function NavItems() {
   return (

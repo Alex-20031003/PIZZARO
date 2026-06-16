@@ -1,8 +1,8 @@
-import { getPopularProducts } from '@/entities/product/api/getPopularProducts';
+import { getPopularProducts } from '@/entities/product';
 import Container from '@/shared/ui/Container';
 import { useQuery } from '@tanstack/react-query'
-import { PopularDishesCarousel } from '@/widgets/popular-dishes/PopularDishesCarousel';
-import PopularDishesCarouselSkeleton from '@/widgets/popular-dishes/PopularDishesCarouselSkeleton';
+import { PopularDishesCarousel } from './PopularDishesCarousel';
+import PopularDishesCarouselSkeleton from './PopularDishesCarouselSkeleton';
 
 
 

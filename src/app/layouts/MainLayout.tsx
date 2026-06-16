@@ -1,8 +1,7 @@
-import Footer from '@/widgets/footer/Footer'
-import Header from '@/widgets/header/Header'
+import { Footer } from '@/widgets/footer'
+import { Header } from '@/widgets/header'
 import { Outlet } from 'react-router'
-import SidebarPortal from '@/widgets/sidebar/SidebarPortal'
-import { useSidebar } from '@/widgets/sidebar/useSidebar'
+import {SidebarPortal, useSidebar} from '@/widgets/sidebar'
 
 export function MainLayout() {
   const {
@@ -14,7 +13,7 @@ export function MainLayout() {
     closeSidebar,
   } = useSidebar()
 
-  return(
+  return (
     <div className='flex min-h-screen flex-col'>
       <Header onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} onOpenNavigation={openNavigation} />
 

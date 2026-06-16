@@ -1,1 +1,1 @@
-export { default as CheckoutPage } from './ui/CheckoutPage'
+export { default } from './ui/CheckoutPage'

@@ -1,4 +1,4 @@
-import type { ProductCardData } from '@/entities/product/model/types'
+import type { ProductCardData } from '@/entities/product'
 import { useCartStore } from '../model/useCartStore'
 
 interface AddToCartButtonProps {

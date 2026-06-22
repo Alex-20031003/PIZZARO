@@ -1,0 +1,1 @@
+export { default as ProductsList } from '@/widgets/product-list/ui/ProductsList'

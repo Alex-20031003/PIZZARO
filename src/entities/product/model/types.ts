@@ -54,3 +54,5 @@ export interface Product {
 }
 
 export type ProductCardData = Pick<Product, 'id' | 'title' | 'category' | 'slug' | 'ingredients' | 'image_url' | 'base_price' | 'discount_price' | 'rating'>
+
+export type ProductCategorySlug = 'all' | 'pizza' | 'sushi' | 'burger' | 'drink'

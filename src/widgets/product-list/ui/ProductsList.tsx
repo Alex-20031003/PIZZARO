@@ -1,0 +1,54 @@
+import { ProductCard, useProductsByCategory, type ProductCategorySlug } from '@/entities/product';
+
+interface ProductsListProps {
+  categorySlug: ProductCategorySlug
+}
+
+export default function ProductsList({ categorySlug }: ProductsListProps) {
+  const {
+    data: products,
+    isPending,
+    isError,
+    error,
+  } = useProductsByCategory(categorySlug);
+
+  if (isPending) {
+    return (
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3'>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div
+            key={index}
+            className='h-96 animate-pulse rounded-3xl bg-[#E6E6E6]'
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className='rounded-3xl bg-red-50 p-6 text-red-600'>
+        Failed to load products: {error.message}
+      </div>
+    );
+  }
+
+  if (!products.length) {
+    return (
+      <div className='rounded-3xl bg-[#E6E6E6] p-6 text-center text-(--dark-grey)'>
+        Products not found
+      </div>
+    );
+  }
+
+  return (
+    <div className='grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3'>
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+        />
+      ))}
+    </div>
+  );
+}

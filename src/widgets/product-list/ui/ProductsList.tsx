@@ -1,4 +1,6 @@
 import { ProductCard, useProductsByCategory, type ProductCategorySlug } from '@/entities/product';
+import { AddToCartButton } from '@/features/cart';
+import { ToggleFavoriteButton } from '@/features/favorite';
 
 interface ProductsListProps {
   categorySlug: ProductCategorySlug
@@ -47,6 +49,12 @@ export default function ProductsList({ categorySlug }: ProductsListProps) {
         <ProductCard
           key={product.id}
           product={product}
+          action={
+            <>
+              <AddToCartButton product={product} />
+              <ToggleFavoriteButton product={product} />
+            </>
+          }
         />
       ))}
     </div>

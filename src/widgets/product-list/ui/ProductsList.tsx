@@ -10,12 +10,12 @@ interface ProductsListProps {
 export default function ProductsList({ categorySlug, searchValue }: ProductsListProps) {
   const {
     data: products,
-    isPending,
+    isLoading,
     isError,
     error,
   } = useProductsByCategory(categorySlug, searchValue);
 
-  if (isPending) {
+  if (isLoading) {
     return (
       <div className='grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3'>
         {Array.from({ length: 6 }).map((_, index) => (

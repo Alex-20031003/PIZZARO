@@ -5,7 +5,7 @@ import type { ProductCategorySlug } from './types';
 export default function useProductByCategory(categorySlug: ProductCategorySlug, searchValue: string) {
   return useQuery({
     queryKey: ['product', categorySlug, searchValue],
-    queryFn: () => getProductsByCategories(categorySlug),
+    queryFn: () => getProductsByCategories(categorySlug, searchValue),
     staleTime: 1000 * 60 * 5,
   });
 }

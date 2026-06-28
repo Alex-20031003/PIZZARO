@@ -9,7 +9,7 @@ interface ProductsListProps {
 
 export default function ProductsList({ categorySlug, searchValue }: ProductsListProps) {
   const {
-    data: products,
+    data: products = [],
     isLoading,
     isError,
     error,
@@ -38,7 +38,7 @@ export default function ProductsList({ categorySlug, searchValue }: ProductsList
 
   if (!products.length) {
     return (
-      <div className='rounded-3xl bg-[#E6E6E6] p-6 text-center text-(--dark-grey)'>
+      <div className='rounded-xl bg-[#E6E6E6] p-6 text-center text-2xl text-(--dark-grey)'>
         Products not found
       </div>
     );

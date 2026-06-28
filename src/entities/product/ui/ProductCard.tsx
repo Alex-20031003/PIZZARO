@@ -27,7 +27,7 @@ export default function ProductCard({ product, classNameCardBox, action }: Produ
               <p className='font-semibold text-base'>{product.rating.toFixed(1)}</p>
             </div>
 
-            <div className='flex flex-row items-center gap-2 mx-4'>
+            <div className='flex flex-row items-center gap-2'>
               <p className='line-through text-(--border-grey) font-medium text-base'>${product.base_price.toFixed(2)}</p>
               <p className='bg-(--primary) text-(--light-grey) p-1.5 rounded-xl font-semibold text-base'>${product.discount_price.toFixed(2)}</p>
             </div>

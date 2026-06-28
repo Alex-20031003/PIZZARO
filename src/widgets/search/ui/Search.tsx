@@ -7,8 +7,8 @@ interface searchProps {
 
 export default function Search({ value, onChange }: searchProps) {
   return (
-    <div className='flex flex-col gap-6 w-full pr-12'>
-      <h2 className='font-medium text-4xl'>Search</h2>
+    <div className='flex flex-col gap-6 w-full xl:pr-12 mb-6 xl:mb-0'>
+      <h2 className='font-medium text-4xl hidden xl:block'>Search</h2>
 
       <div className='relative'>
         <input

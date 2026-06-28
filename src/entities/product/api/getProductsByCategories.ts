@@ -16,7 +16,7 @@ export default async function getProductByCategories(categorySlug: ProductCatego
   }
 
   if (searchValue) {
-    query = query.ilike('title', searchValue)
+    query = query.ilike('title', `%${searchValue}%`)
   }
 
   const { data, error } = await query

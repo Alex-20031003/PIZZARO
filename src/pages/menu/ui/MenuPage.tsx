@@ -10,9 +10,8 @@ import { useParams } from 'react-router';
 export default function MenuPage() {
   const { categorySlug } = useParams()
   const [searchValue, setSearchValue] = useState('')
-  const debouncedValue = useDebounce(searchValue.trim(), 600)
-  
-  
+  const debouncedValue = useDebounce(searchValue.trim())
+
   return (
     <section className='mt-19 mb-32'>
       <Container className='flex flex-row items-start justify-between'>
@@ -23,7 +22,10 @@ export default function MenuPage() {
 
         <div className='flex-1'>
           <ul className='list-none'>
-            <ProductsList categorySlug={categorySlug as ProductCategorySlug} searchValue={debouncedValue} />
+            <ProductsList 
+              categorySlug={(categorySlug ?? 'all') as ProductCategorySlug}
+              searchValue={debouncedValue}
+            />
           </ul>
         </div>
       </Container>

@@ -1,11 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import getProductsByCategories from '../api/getProductsByCategories';
-import type { ProductCategorySlug } from './types';
+import type { ProductCategorySlug, ProductSortOption } from './types';
 
-export default function useProductByCategory(categorySlug: ProductCategorySlug, searchValue: string) {
+export default function useProductByCategory(categorySlug: ProductCategorySlug, searchValue: string, sortValue: ProductSortOption) {
   return useQuery({
-    queryKey: ['product', categorySlug, searchValue],
-    queryFn: () => getProductsByCategories(categorySlug, searchValue),
+    queryKey: ['product', categorySlug, searchValue, sortValue],
+    queryFn: () => getProductsByCategories(categorySlug, searchValue, sortValue),
     staleTime: 1000 * 60 * 5,
+    placeholderData: keepPreviousData,
   });
 }

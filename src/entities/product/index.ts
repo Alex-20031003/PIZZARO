@@ -4,6 +4,7 @@ export { default as getProductByCategories } from '@/entities/product/api/getPro
 
 export type { ProductCardData } from '@/entities/product/model/types'
 export type { ProductCategorySlug } from '@/entities/product/model/types'
+export type { ProductSortOption } from './model/types'
 
 export { getPopularProducts } from '@/entities/product/api/getPopularProducts'
 export { default as useProductsByCategory } from '@/entities/product/model/useProductsByCategory'

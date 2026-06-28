@@ -1,19 +1,20 @@
-import { ProductCard, useProductsByCategory, type ProductCategorySlug } from '@/entities/product';
+import { ProductCard, useProductsByCategory, type ProductCategorySlug, type ProductSortOption } from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
 import { ToggleFavoriteButton } from '@/features/favorite';
 
 interface ProductsListProps {
   categorySlug: ProductCategorySlug
   searchValue: string
+  sortValue: ProductSortOption
 }
 
-export default function ProductsList({ categorySlug, searchValue }: ProductsListProps) {
+export default function ProductsList({ categorySlug, searchValue, sortValue }: ProductsListProps) {
   const {
     data: products = [],
     isLoading,
     isError,
     error,
-  } = useProductsByCategory(categorySlug, searchValue);
+  } = useProductsByCategory(categorySlug, searchValue, sortValue);
 
   if (isLoading) {
     return (

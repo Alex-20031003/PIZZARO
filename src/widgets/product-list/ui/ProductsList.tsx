@@ -4,15 +4,16 @@ import { ToggleFavoriteButton } from '@/features/favorite';
 
 interface ProductsListProps {
   categorySlug: ProductCategorySlug
+  searchValue: string
 }
 
-export default function ProductsList({ categorySlug }: ProductsListProps) {
+export default function ProductsList({ categorySlug, searchValue }: ProductsListProps) {
   const {
     data: products,
     isPending,
     isError,
     error,
-  } = useProductsByCategory(categorySlug);
+  } = useProductsByCategory(categorySlug, searchValue);
 
   if (isPending) {
     return (

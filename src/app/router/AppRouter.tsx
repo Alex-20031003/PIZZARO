@@ -7,6 +7,7 @@ const AboutPage = lazy(() => import('@/pages/about'))
 const ContactsPage = lazy(() => import('@/pages/contacts'))
 const CheckoutPage = lazy(() => import('@/pages/checkout'))
 const NotFoundPage = lazy(() => import('@/pages/not-found'))
+const ProductPage = lazy(() => import('@/pages/product'))
 
 export default function AppRouter() {
   return (
@@ -16,7 +17,7 @@ export default function AppRouter() {
           <Route path='/' element={<HomePage />} />
           <Route path='/menu' element={ <Navigate to='/menu/all' replace />} />
           <Route path='/menu/:categorySlug' element={<MenuPage />} />
-          {/* <Route path='/menu/:categorySlug/:product' element={<ProductModal />} /> */}
+          <Route path='/menu/:categorySlug/:productSlug' element={<ProductPage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contacts' element={<ContactsPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />

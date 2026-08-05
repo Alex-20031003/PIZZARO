@@ -2,7 +2,7 @@ import { supabase } from '@/shared/api/supabase/client';
 import type { ProductCardData } from '../model/types';
 
 
-export async function getPopularProducts(): Promise<ProductCardData[]> {
+export default async function getPopularProducts(): Promise<ProductCardData[]> {
   const  { data, error } = await supabase
     .from('products')
     .select('id, title, category, slug, ingredients, image_url, base_price, discount_price, rating')

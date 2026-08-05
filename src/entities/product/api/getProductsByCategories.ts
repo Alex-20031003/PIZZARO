@@ -6,7 +6,7 @@ import type { ProductCardData, ProductCategorySlug, ProductSortOption } from '@/
 export default async function getProductByCategories(categorySlug: ProductCategorySlug, searchValue: string, sortValue: ProductSortOption): Promise<ProductCardData[]> {
   let query = supabase
     .from('products')
-    .select('id, title, slug, ingredients, image_url, base_price, discount_price, rating')
+    .select('id, title, category, slug, ingredients, image_url, base_price, discount_price, rating')
     .eq('is_active', true)
     .eq('is_available', true)
 

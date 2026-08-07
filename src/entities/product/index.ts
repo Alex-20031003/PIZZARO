@@ -5,6 +5,7 @@ export { default as getProductBySlug } from './api/getProductBySlug'
 export { default as getPopularProducts } from './api/getPopularProducts'
 
 export { default as useProductsByCategory } from './model/useProductsByCategory'
+export { default as useProductBySlug } from './model/useProductBySlug'
 
 export type {
   Product,

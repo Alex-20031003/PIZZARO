@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 
 interface CartState {
   items: CartItem[]
-  addItem: (item: Omit<CartItem, 'quantity'>) => void
+  addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void
   removeItem: (id: number) => void
   increaseQuantity: (id: number) => void
   decreaseQuantity: (id: number) => void
@@ -17,7 +17,11 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
 
-      addItem: (item) =>
+      addItem: (item, quantity = 1) => {
+        if (!Number.isInteger(quantity) || quantity < 1) {
+          return
+        }
+
         set((state) => {
           const existingItem = state.items.find(
             (cartItem) => cartItem.id === item.id
@@ -27,16 +31,18 @@ export const useCartStore = create<CartState>()(
             return {
               items: state.items.map((cartItem) =>
                 cartItem.id === item.id
-                  ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                  ? { ...cartItem, quantity: cartItem.quantity + quantity }
                   : cartItem
               ),
             }
           }
 
           return {
-            items: [...state.items, { ...item, quantity: 1 }],
+            items: [...state.items, { ...item, quantity }],
           }
-        }),
+        })
+      },
+
 
       removeItem: (id) =>
         set((state) => ({
@@ -64,7 +70,7 @@ export const useCartStore = create<CartState>()(
         })),
 
       clearCart: () => set({ items: [] }),
-    
+
       getTotalCartCount: () => get().items.reduce((total, item) => total + item.quantity, 0),
     }),
     {

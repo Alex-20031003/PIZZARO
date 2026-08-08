@@ -1,12 +1,14 @@
 import { useProductBySlug } from '@/entities/product'
 import { useParams } from 'react-router'
 import Container from '@/shared/ui/Container'
-import { Star } from 'lucide-react'
+import { Minus, Plus, Star } from 'lucide-react'
 import { AddToCartButton } from '@/features/cart'
 import { ToggleFavoriteButton } from '@/features/favorite'
+import { useState } from 'react'
 
 export default function ProductPage() {
   const { categorySlug, productSlug } = useParams()
+  const [quantity, setQuantity] = useState(1)
 
   const { data, isPending, isError } = useProductBySlug(categorySlug, productSlug)
 
@@ -56,17 +58,39 @@ export default function ProductPage() {
             <p className='xl:text-xl text-lg text-(--dark-grey) italic capitalize'>{ingredientsList}</p>
           </div>
 
-          {data.discount_price ? (
+          {data.discount_price !== null ? (
             <div className='flex flex-row items-center gap-2 mt-6'>
-              <p className='line-through text-(--border-grey) font-medium text-lg xl:text-2xl'>${data.base_price.toFixed(2)}</p>
-              <p className='xl:text-2xl text-lg text-(--light-grey) p-1.5 bg-(--primary) rounded-xl font-semibold'>${data.discount_price.toFixed(2)}</p>
+              <p className='line-through text-(--border-grey) font-medium text-lg xl:text-2xl'>${(data.base_price * quantity).toFixed(2)}</p>
+              <p className='xl:text-2xl text-lg text-(--light-grey) p-1.5 bg-(--primary) rounded-xl font-semibold'>${(data.discount_price * quantity).toFixed(2)}</p>
             </div>
           ) : (
-            <p className='text-(--border-grey) font-medium text-lg xl:text-2xl mt-6'>${data.base_price.toFixed(2)}</p>
+            <p className='text-(--border-grey) font-medium text-lg xl:text-2xl mt-6'>${(data.base_price * quantity).toFixed(2)}</p>
           )}
 
+          <div className='w-full flex xl:max-w-125 items-center justify-between mt-12'>
+            <button
+              type='button'
+              disabled={quantity === 1}
+              aria-label='Decrement the quantity'
+              onClick={() => setQuantity(current => Math.max(1, current - 1))}
+              className='disabled:opacity-40 disabled:cursor-not-allowed'
+            >
+              <Minus className='stroke-(--primary)' size={32} />
+            </button>
+
+            <p className='text-2xl'>{quantity}</p>
+
+            <button
+              type='button'
+              aria-label='Increment the quantity'
+              onClick={() => setQuantity(current => current + 1)}
+            >
+              <Plus className='stroke-(--primary)' size={32} />
+            </button>
+          </div>
+
           <div className='flex flex-row gap-2 lg:max-w-125 mt-12'>
-            <AddToCartButton product={data} />
+            <AddToCartButton product={data} quantity={quantity} />
             <ToggleFavoriteButton product={data} />
           </div>
 

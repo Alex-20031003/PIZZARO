@@ -51,7 +51,7 @@ export default function ProductPage() {
             </div>
           </div>
 
-          <p className='xl:text-xl text-lg my-6 max-w-5xl'>{data.description}</p>
+          <p className='xl:text-xl text-base my-6 max-w-5xl'>{data.description}</p>
 
           <div className='flex flex-col gap-2'>
             <p className='xl:text-xl text-lg font-semibold'>Ingredients</p>
@@ -67,7 +67,7 @@ export default function ProductPage() {
             <p className='text-(--border-grey) font-medium text-lg xl:text-2xl mt-6'>${(data.base_price * quantity).toFixed(2)}</p>
           )}
 
-          <div className='w-full flex xl:max-w-125 items-center justify-between mt-12'>
+          <div className='w-full flex lg:max-w-125 items-center justify-between mt-6'>
             <button
               type='button'
               disabled={quantity === 1}

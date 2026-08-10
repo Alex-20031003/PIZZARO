@@ -8,6 +8,8 @@ const ContactsPage = lazy(() => import('@/pages/contacts'))
 const CheckoutPage = lazy(() => import('@/pages/checkout'))
 const NotFoundPage = lazy(() => import('@/pages/not-found'))
 const ProductPage = lazy(() => import('@/pages/product'))
+const AuthPage = lazy(() => import('@/pages/auth'))
+
 
 export default function AppRouter() {
   return (
@@ -18,6 +20,9 @@ export default function AppRouter() {
           <Route path='/menu' element={ <Navigate to='/menu/all' replace />} />
           <Route path='/menu/:categorySlug' element={<MenuPage />} />
           <Route path='/menu/:categorySlug/:productSlug' element={<ProductPage />} />
+          <Route path='/auth' element={<Navigate to='/auth/sign-in' replace />} />
+          <Route path='/auth/sign-in' element={<AuthPage mode='sign-in' />} />
+          <Route path='/auth/sign-up' element={<AuthPage mode='sign-up' />}/>
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contacts' element={<ContactsPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />

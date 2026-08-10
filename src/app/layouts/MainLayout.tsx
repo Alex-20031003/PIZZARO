@@ -17,7 +17,7 @@ export function MainLayout() {
     <div className='flex min-h-screen flex-col'>
       <Header onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} onOpenNavigation={openNavigation} />
 
-      <main className='flex-1'>
+      <main className='flex flex-col flex-1'>
         <Outlet />
       </main>
 

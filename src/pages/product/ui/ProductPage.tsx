@@ -1,32 +1,82 @@
 import { useProductBySlug } from '@/entities/product'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import Container from '@/shared/ui/Container'
-import { Minus, Plus, Star } from 'lucide-react'
+import { Minus, Plus, RefreshCw, SearchX, Star, TriangleAlert } from 'lucide-react'
 import { AddToCartButton } from '@/features/cart'
 import { ToggleFavoriteButton } from '@/features/favorite'
 import { useState } from 'react'
+import ProductPageSkeleton from './ProductPageSkeleton'
 
 export default function ProductPage() {
   const { categorySlug, productSlug } = useParams()
   const [quantity, setQuantity] = useState(1)
+  const {
+    data,
+    isPending,
+    isError,
+    isFetching,
+    isFetched,
+    refetch,
+  } = useProductBySlug(categorySlug, productSlug)
 
-  const { data, isPending, isError } = useProductBySlug(categorySlug, productSlug)
 
-  if (isPending) {
+  if (isPending && !isFetched) {
     return (
-      <div>Loading product...</div>
+      <ProductPageSkeleton />
     )
   }
 
-  if (isError) {
+  if (isError || isPending) {
     return (
-      <div>Could not load product</div>
+      <section className='2xl:pt-18 pt-20 pb-6 2xl:pb-12'>
+        <Container className='flex flex-col items-center justify-center text-center'>
+          <div className='bg-(--primary) p-3 rounded-xl flex items-center justify-center mb-6'>
+            <TriangleAlert color='#EBEBEB' size={48} />
+          </div>
+
+          <h1 className='text-4xl font-semibold mb-3'>We couldn't load this dish</h1>
+          <p className='text-lg mb-6'>Something went wrong. Check your connection and try again</p>
+
+          <div className='flex flex-col sm:flex-row gap-4 w-full max-w-84'>
+            <button
+              className='bg-(--primary) px-6 py-3 text-white rounded-xl h-12 sm:max-w-40 w-full flex items-center justify-center'
+              onClick={() => refetch()}
+              disabled={isFetching}
+            >
+              {isFetching ? <RefreshCw className='animate-spin duration-300' /> : 'Try Again'}
+            </button>
+
+            <Link to='/menu' className='flex items-center justify-center bg-(--dark-grey) text-white px-6 py-3 rounded-xl h-12 sm:max-w-40 w-full'>
+              Back To Menu
+            </Link>
+          </div>
+        </Container>
+      </section>
     )
   }
 
   if (data === null) {
     return (
-      <div>Product not found</div>
+      <section className='2xl:pt-18 pt-20 pb-6 2xl:pb-12'>
+        <Container className='flex flex-col items-center justify-center text-center'>
+          <div className='bg-(--dark-grey) p-3 rounded-xl flex items-center justify-center mb-6'>
+            <SearchX color='#EBEBEB' size={48} />
+          </div>
+
+          <h1 className='text-4xl font-semibold mb-3'>This dish isn't on the menu</h1>
+          <p className='text-lg mb-6'>It may have been removed, or the link may be incorrect</p>
+
+          <div className='flex flex-col sm:flex-row gap-4 w-full max-w-84'>
+            <Link to='/menu' className='bg-(--primary) px-6 py-3 text-white rounded-xl h-12 sm:max-w-40 w-full flex items-center justify-center'>
+              Back To Menu
+            </Link>
+
+            <Link to='/' className='flex items-center justify-center bg-(--dark-grey) text-white px-6 py-3 rounded-xl h-12 sm:max-w-40 w-full'>
+              Back To Home
+            </Link>
+          </div>
+        </Container>
+      </section>
     )
   }
 

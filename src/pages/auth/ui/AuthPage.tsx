@@ -46,37 +46,54 @@ export default function AuthPage({ mode }: AuthPageProps) {
       return
     }
 
-    if (mode !== 'sign-up') {
-      return
-    }
-
     setIsSubmitting(true)
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      if (mode === 'sign-up') {
+        const { error } = await supabase.auth.signUp({
+          email: values.email.trim(),
+          password: values.password,
+          options: {
+            data: {
+              username: values.username.trim(),
+              display_name: values.username.trim(),
+            },
+          },
+        })
+
+        if (error) {
+          const accountAlreadyExists =
+            error.code === 'user_already_exists' ||
+            error.code === 'email_exists'
+
+          setErrors({
+            form: accountAlreadyExists
+              ? 'An account with this email already exists.'
+              : 'Could not create account. Please try again.',
+          })
+
+          return
+        }
+
+        setSuccessMessage('Account created successfully')
+
+        return
+      }
+
+      const { error } = await supabase.auth.signInWithPassword({
         email: values.email.trim(),
         password: values.password,
-        options: {
-          data: {
-            username: values.username.trim(),
-            display_name: values.username.trim(),
-          },
-        },
       })
 
       if (error) {
         setErrors({
-          form: 'Could not create account. Please try again.',
+          form: 'Invalid email or password.',
         })
 
         return
       }
 
-      setSuccessMessage(
-        data.session
-          ? 'Account created successfully'
-          : 'Check your email to confirm your account',
-      )
+      setSuccessMessage('Signed in successfully')
     } catch {
       setErrors({
         form: 'Unable to connect. Please try again.',

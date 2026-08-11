@@ -3,6 +3,7 @@ import logo from '@/assets/logo.svg'
 import { useState, type SubmitEvent } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router';
+import { supabase } from '@/shared/api/supabase/client';
 import {
   EMAIL_MAX_LENGTH,
   PASSWORD_MAX_LENGTH,
@@ -20,8 +21,10 @@ export default function AuthPage({ mode }: AuthPageProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false)
   const [errors, setErrors] = useState<AuthFormErrors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
@@ -35,10 +38,50 @@ export default function AuthPage({ mode }: AuthPageProps) {
 
     const nextErrors = validateAuthForm(values, mode)
 
+    setSuccessMessage(null)
+
     setErrors(nextErrors)
 
     if (Object.keys(nextErrors).length > 0) {
       return
+    }
+
+    if (mode !== 'sign-up') {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: values.email.trim(),
+        password: values.password,
+        options: {
+          data: {
+            username: values.username.trim(),
+          },
+        },
+      })
+
+      if (error) {
+        setErrors({
+          form: 'Could not create account. Please try again.',
+        })
+
+        return
+      }
+
+      setSuccessMessage(
+        data.session
+          ? 'Account created successfully'
+          : 'Check your email to confirm your account',
+      )
+    } catch {
+      setErrors({
+        form: 'Unable to connect. Please try again.',
+      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -72,7 +115,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
               />
 
               {errors.username &&
-                <p className='w-full min-w-0 break-words text-sm text-red-600 pl-1' role='alert'>{errors.username}</p>
+                <p className='w-full min-w-0 wrap-break-word text-sm text-red-600 pl-1' role='alert'>{errors.username}</p>
               }
             </div>
           )}
@@ -151,8 +194,28 @@ export default function AuthPage({ mode }: AuthPageProps) {
             </div>
           )}
 
-          <button type='submit' className='mb-2 py-2 rounded-xl bg-(--primary) text-white w-full'>
-            {mode === 'sign-in' ? 'Sign In' : 'Create account'}
+          {errors.form && (
+            <p className='mb-4 text-sm text-red-600' role='alert'>
+              {errors.form}
+            </p>
+          )}
+
+          {successMessage && (
+            <p className='mb-4 text-sm text-green-700' role='status'>
+              {successMessage}
+            </p>
+          )}
+
+          <button
+            type='submit'
+            disabled={isSubmitting}
+            className='mb-2 py-2 rounded-xl bg-(--primary) text-white w-full disabled:cursor-not-allowed disabled:opacity-60'
+          >
+            {isSubmitting
+              ? 'Please wait...'
+              : mode === 'sign-in'
+                ? 'Sign In'
+                : 'Create account'}
           </button>
 
           <div className='flex flex-row items-center gap-1'>

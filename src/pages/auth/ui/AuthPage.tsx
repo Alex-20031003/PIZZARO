@@ -59,6 +59,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
         options: {
           data: {
             username: values.username.trim(),
+            display_name: values.username.trim(),
           },
         },
       })

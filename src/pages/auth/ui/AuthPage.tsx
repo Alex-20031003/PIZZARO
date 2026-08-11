@@ -2,7 +2,7 @@ import Container from '@/shared/ui/Container';
 import logo from '@/assets/logo.svg'
 import { useState, type SubmitEvent } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { supabase } from '@/shared/api/supabase/client';
 import {
   EMAIL_MAX_LENGTH,
@@ -22,7 +22,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false)
   const [errors, setErrors] = useState<AuthFormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const navigate = useNavigate()
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -37,8 +37,6 @@ export default function AuthPage({ mode }: AuthPageProps) {
     }
 
     const nextErrors = validateAuthForm(values, mode)
-
-    setSuccessMessage(null)
 
     setErrors(nextErrors)
 
@@ -75,7 +73,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
           return
         }
 
-        setSuccessMessage('Account created successfully')
+        navigate('/', { replace: true })
 
         return
       }
@@ -93,7 +91,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
         return
       }
 
-      setSuccessMessage('Signed in successfully')
+      navigate('/', { replace: true })
     } catch {
       setErrors({
         form: 'Unable to connect. Please try again.',
@@ -215,12 +213,6 @@ export default function AuthPage({ mode }: AuthPageProps) {
           {errors.form && (
             <p className='mb-4 text-sm text-red-600' role='alert'>
               {errors.form}
-            </p>
-          )}
-
-          {successMessage && (
-            <p className='mb-4 text-sm text-green-700' role='status'>
-              {successMessage}
             </p>
           )}
 

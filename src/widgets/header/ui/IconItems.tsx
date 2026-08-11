@@ -1,6 +1,7 @@
 import { Heart, ShoppingBag, User, Menu } from 'lucide-react'
 import { useCartStore } from '@/features/cart/model/useCartStore'
 import { useFavoriteStore } from '@/features/favorite/model/useFavoriteStore'
+import { useAuth } from '@/features/auth'
 
 
 type IconsProps = {
@@ -12,18 +13,26 @@ type IconsProps = {
 
 export default function IconItems({ onOpenCart, onOpenFavorite, onOpenUser, onOpenNavigation }: IconsProps) {
   const totalCountCart = useCartStore((state) => state.getTotalCartCount())
-  const totalCountFavorites = useFavoriteStore((state) => state.getTotalFavoritesCount())
+  const { session } = useAuth()
+
+  const itemsByUserId = useFavoriteStore(
+    (state) => state.itemsByUserId,
+  )
+
+  const totalCountFavorites = session
+    ? itemsByUserId[session.user.id]?.length ?? 0
+    : 0
 
   return (
     <div className='flex flex-row items-center justify-end gap-6'>
       <button
         onClick={onOpenFavorite}
         className='relative cursor-pointer hidden sm:block'
-        >
-        <Heart onClick={onOpenFavorite} size={24} className='cursor-pointer hidden sm:block' />
+      >
+        <Heart size={24} className='cursor-pointer hidden sm:block' />
 
         {totalCountFavorites > 0 && (
-          <span className='absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-(--primary) text-xs text-white'>{ totalCountFavorites }</span>
+          <span className='absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-(--primary) text-xs text-white'>{totalCountFavorites}</span>
         )}
       </button>
       <button

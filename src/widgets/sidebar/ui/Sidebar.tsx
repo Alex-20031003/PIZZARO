@@ -48,7 +48,7 @@ export default function Sidebar({ activeSidebar, onClose, onOpenCart, onOpenFavo
 
         <div className='min-h-0 flex-1'>
           {activeSidebar === 'cart' && <CartSidebarContent onClose={onClose} />}
-          {activeSidebar === 'favorite' && <FavoriteSidebarContent />}
+          {activeSidebar === 'favorite' && <FavoriteSidebarContent onClose={onClose} />}
           {activeSidebar === 'user' && <UserSidebarContent onClose={onClose} />}
           {activeSidebar === 'navigation' && <MobileNav onOpenCart={onOpenCart} onOpenFavorite={onOpenFavorite} onOpenUser={onOpenUser} onClose={onClose} />}
         </div>

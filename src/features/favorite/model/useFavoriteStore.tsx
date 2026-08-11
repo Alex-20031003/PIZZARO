@@ -3,41 +3,52 @@ import { persist } from 'zustand/middleware'
 import type { ProductCardData } from '@/entities/product/model/types'
 
 interface FavoriteState {
-  items: ProductCardData[]
-  toggleFavorite: (item: ProductCardData) => void
-  clearFavorites: () => void
-  getTotalFavoritesCount: () => number
+  itemsByUserId: Record<string, ProductCardData[]>
+  toggleFavorite: (userId: string, item: ProductCardData) => void
+  clearFavorites: (userId: string) => void
 }
 
 export const useFavoriteStore = create<FavoriteState>()(
   persist(
-    (set, get) => ({
-      items: [],
+    (set) => ({
+      itemsByUserId: {},
 
-      toggleFavorite: (item) => set((state) => {
-        const isFavorite = state.items.some((product) => product.id === item.id)
+      toggleFavorite: (userId, item) =>
+        set((state) => {
+          const userItems = state.itemsByUserId[userId] ?? []
 
-        if (isFavorite) {
+          const isFavorite = userItems.some((product) => product.id === item.id)
+
+          const nextItems = isFavorite
+            ? userItems.filter(product => product.id !== item.id)
+            : [...userItems, item]
+
           return {
-            items: state.items.filter((product) => product.id !== item.id)
+            itemsByUserId: {
+              ...state.itemsByUserId,
+              [userId]: nextItems,
+            }
           }
-        } else {
-          return {
-            items: [...state.items, item]
-          }
-        }
+        }),
+
+      clearFavorites: (userId) =>
+        set((state) => ({
+          itemsByUserId: {
+            ...state.itemsByUserId,
+            [userId]: []
+          },
+        })),
       }),
-
-      clearFavorites: () => set({ items: [] }),
-
-      getTotalFavoritesCount: () => get().items.length,
-    }),
     {
       name: 'favorite-storage',
       partialize: (state) => ({
-        items: state.items
+        itemsByUserId: state.itemsByUserId,
       }),
-      version: 1,
-    }
-  )
+      version: 2,
+
+      migrate: () => ({
+        itemsByUserId: {},
+      }),
+    },
+  ),
 )

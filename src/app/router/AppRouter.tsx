@@ -6,6 +6,7 @@ const MenuPage = lazy(() => import('@/pages/menu'))
 const AboutPage = lazy(() => import('@/pages/about'))
 const ContactsPage = lazy(() => import('@/pages/contacts'))
 const CheckoutPage = lazy(() => import('@/pages/checkout'))
+const CheckoutDone = lazy(() => import('@/pages/checkout/ui/CheckoutDone'))
 const NotFoundPage = lazy(() => import('@/pages/not-found'))
 const ProductPage = lazy(() => import('@/pages/product'))
 const AuthPage = lazy(() => import('@/pages/auth'))
@@ -26,6 +27,7 @@ export default function AppRouter() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contacts' element={<ContactsPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
+          <Route path='/checkout/success' element={<CheckoutDone />} />
           <Route path='*' element={<NotFoundPage />} />
         </Route>
       </Routes>

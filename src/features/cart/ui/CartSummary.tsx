@@ -11,20 +11,28 @@ export default function CartSummary({ totalPrice, onClose }: { totalPrice: numbe
         <h2 className='font-semibold text-2xl'>Total</h2>
         <p className='text-xl'>${totalPrice.toFixed(2)}</p>
       </div>
-      <Link to='/checkout'>
+      {items.length === 0 ? (
         <button
           type='button'
-          className='py-4 bg-(--primary) text-white rounded-lg w-full mb-2'
-          onClick={onClose}
-          disabled={items.length === 0}
+          className='py-4 bg-(--primary)/80 text-white rounded-lg w-full mb-2'
+          disabled
         >
           Checkout
         </button>
-      </Link>
+      ) : (
+        <Link
+          to='/checkout'
+          onClick={onClose}
+          className='py-4 flex items-center justify-center bg-(--primary) text-white rounded-lg w-full mb-2'
+        >
+          Checkout
+        </Link>
+      )}
+
       <button
         type='button'
         onClick={handleClearCart}
-        className='py-4 bg-(--light-grey) text-black rounded-lg disabled:cursor-not-allowed'
+        className={`py-4 bg-(--light-grey) text-black rounded-lg ${items.length === 0 ? 'hidden' : 'block'}`}
         disabled={items.length === 0}
       >
         Clear Cart

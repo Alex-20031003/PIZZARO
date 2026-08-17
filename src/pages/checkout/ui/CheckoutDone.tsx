@@ -1,8 +1,15 @@
 import Container from '@/shared/ui/Container'
 import { CircleCheckBig } from 'lucide-react'
-import { Link } from 'react-router'
+import { Link, Navigate, useLocation } from 'react-router'
 
 export default function CheckoutDone() {
+  const location = useLocation()
+  const wasOrderPlaced = location.state?.demoOrderPlaced === true
+
+  if (!wasOrderPlaced) {
+    return <Navigate to='/menu/all' replace />
+  }
+
   return (
     <section
       className='flex flex-1 py-10 sm:py-16 lg:py-24'

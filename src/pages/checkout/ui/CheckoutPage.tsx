@@ -14,7 +14,7 @@ import {
   type CheckoutFormErrors,
   type CheckoutFormValues,
 } from '../model/checkoutValidation';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 export default function CheckoutPage() {
   const products = useCartStore((state) => state.items)
@@ -22,6 +22,23 @@ export default function CheckoutPage() {
   const handleClearCart = useCartStore((state) => state.clearCart)
   const [errors, setErrors] = useState<CheckoutFormErrors>({})
   const navigate = useNavigate()
+
+  if (products.length === 0) {
+    return (
+      <section className='flex flex-1 mt-9 mb-24'>
+        <Container className='flex flex-col gap-6 items-center justify-center'>
+          <h1 className='text-4xl font-semibold'>Your cart is empty</h1>
+          <p className='text-xl'>Add some dishes from the menu before placing your order</p>
+          <Link
+            to='/menu/all'
+            className='bg-(--primary) text-white py-4 px-8 font-medium rounded-lg'
+          >
+            Browse Menu
+          </Link>
+        </Container>
+      </section>
+    )
+  }
 
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -48,7 +65,10 @@ export default function CheckoutPage() {
 
     handleClearCart()
 
-    navigate('/checkout/success', { replace: true })
+    navigate('/checkout/success', {
+      replace: true,
+      state: { demoOrderPlaced: true },
+    })
   }
 
   return (

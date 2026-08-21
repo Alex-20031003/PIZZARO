@@ -6,17 +6,16 @@ on:
 
   workflow_dispatch:
 
-
 jobs:
   keep-alive:
     runs-on: ubuntu-latest
 
     steps:
       - name: Ping Supabase
-        run: | 
+        run: |
           curl --fail --silent --show-error \
-          -X POST \
-          "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/keep_alive" \
-          -H "apikey: {{ secrets.SUPABASE_PUBLISHABLE_KEY }}" \
-          -H "Content-Type: application/json" \
-          -d '{}'
+            -X POST \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/keep_alive" \
+            -H "apikey: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{}'

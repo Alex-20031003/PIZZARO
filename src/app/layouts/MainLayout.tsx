@@ -4,6 +4,7 @@ import { Outlet } from 'react-router'
 import { SidebarPortal, useSidebar } from '@/widgets/sidebar'
 import { Suspense } from 'react'
 import PageLoader from '@/shared/ui/PageLoader'
+import { CartToastPortal } from '@/features/cart'
 
 export function MainLayout() {
   const {
@@ -28,6 +29,8 @@ export function MainLayout() {
       <Footer />
 
       <SidebarPortal activeSidebar={activeSidebar} onOpenCart={openCart} onOpenFavorite={openFavorite} onOpenUser={openUser} onClose={closeSidebar} />
+
+      <CartToastPortal />
     </div>
   )
 }

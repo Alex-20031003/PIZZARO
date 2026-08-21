@@ -14,7 +14,7 @@ type MobileNavProps = {
 
 export default function MobileNav({ onClose, onOpenCart, onOpenFavorite, onOpenUser }: MobileNavProps) {
   const { session } = useAuth()
-  const cartCount = useCartStore((state) => state.items.length)
+  const cartCount = useCartStore((state) => state.getTotalCartCount())
   const favoriteItems = useFavoriteStore((state) => state.itemsByUserId)
   const favoriteCount = session ? favoriteItems[session.user.id]?.length ?? 0 : 0
 
@@ -44,7 +44,9 @@ export default function MobileNav({ onClose, onOpenCart, onOpenFavorite, onOpenU
         <div className='relative'>
           <ShoppingBag size={32} />
           {cartCount > 0 && (
-            <span className='absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-(--primary) text-xs text-white'>{cartCount}</span>
+            <span className='absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-(--primary) text-xs text-white'>
+              {cartCount > 5 ? '5+' : cartCount}
+            </span>
           )}
         </div>
         <button onClick={onOpenCart} >Cart</button>
